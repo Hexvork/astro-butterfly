@@ -1,0 +1,38 @@
+---
+const allLinks = Astro.props.allLinks || []; // 所有友链
+const showNum = Astro.props.showNum || 5;   // 显示数量
+---
+<div id="friend-links-list" data-all-links={JSON.stringify(allLinks)} data-show-num={showNum}>
+  {allLinks.slice(0, showNum).map(link => (
+    <a class="footer-item" target="_blank" href={link.url}>{link.name}</a>
+  ))}
+</div>
+
+<button id="refresh-friend-link">刷新友链</button>
+
+<script type="module">
+  // 等待页面加载
+  document.addEventListener('DOMContentLoaded', function() {
+    const refreshBtn = document.getElementById('refresh-friend-link');
+    const linkList = document.getElementById('friend-links-list');
+    if (!refreshBtn || !linkList) return;
+
+    // 读取所有友链和显示数量
+    const allLinks = JSON.parse(linkList.dataset.allLinks || '[]');
+    const showNum = parseInt(linkList.dataset.showNum) || 5;
+
+    function generateRandomLinks() {
+      const shuffledLinks = [...allLinks].sort(() => Math.random() - 0.5);
+      const randomLinks = shuffledLinks.slice(0, showNum);
+      return randomLinks.map(link => `<a class="footer-item" target="_blank" href="${link.url}">${link.name}</a>`).join('');
+    }
+
+    refreshBtn.addEventListener('click', function() {
+      linkList.style.opacity = 0; // 先隐藏
+      setTimeout(() => {
+        linkList.innerHTML = generateRandomLinks();
+        linkList.style.opacity = 1; // 再显示
+      }, 100);
+    });
+  });
+</script>

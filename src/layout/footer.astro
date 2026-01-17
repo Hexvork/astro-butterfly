@@ -1,0 +1,205 @@
+---
+// src/layout/footer.astro 【最终适配版】
+// ✅ 导入正确路径的 Stylus 样式：src/source/css/_layout/footer.styl
+// ✅ 无任何判断、全兜底、零报错
+// ✅ 保留所有功能：运行时间/友链换一批/返回顶部等
+import { getConfig } from '../config';
+// 导入你的 footer.styl 样式文件（路径精准匹配：src/source/css/_layout/footer.styl）
+import '../source/css/_layout/footer.styl';
+
+const theme = getConfig();
+const cfg = theme.footer_better || {}; // 全局兜底，防止footer_better不存在
+
+// 1. 本站已苟活 运行时间计算 (2025-01-01 至今，每秒刷新)
+const startTime = new Date(2025, 0, 1, 0, 0, 0);
+const calcRuntime = () => {
+  const now = new Date();
+  const diffTime = now.getTime() - startTime.getTime();
+  const days = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diffTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((diffTime % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((diffTime % (1000 * 60)) / 1000);
+  return `本站已苟活：${days} 天 ${hours} 时 ${minutes} 分 ${seconds} 秒`;
+};
+
+// 2. 友链随机展示逻辑 - 数组兜底，防止为空报错
+const friendLinks = cfg.footer_group?.footer_friend_links?.links || [];
+const showNum = cfg.footer_group?.footer_friend_links?.number || 5;
+const randomLinks = friendLinks.length 
+  ? friendLinks.sort(() => Math.random() - 0.5).slice(0, showNum) 
+  : [];
+
+// 3. 版权年份计算 + 数据兜底
+const now = new Date();
+const nowYear = now.getFullYear();
+const copyInfo = cfg.footer_bottom?.copyright || {};
+const author = copyInfo.author || theme.author;
+const copyLink = copyInfo.link || '#';
+const copySince = copyInfo.since || 2025;
+
+// 4. 图标区数据兜底
+const icons = cfg.footer_icons || {};
+const iconLeft = icons.left || [];
+const iconRight = icons.right || [];
+const logoCfg = icons.footer_logo || {};
+const logoUrl = logoCfg.url || '';
+
+// 5. 分组链接数据兜底
+const groupLinks = cfg.footer_group?.footer_group_link || [];
+
+// 6. 底部备案/CDN等链接兜底
+const footLeftLinks = cfg.footer_bottom?.left || [];
+const footRightLinks = cfg.footer_bottom?.right || [];
+---
+
+<!-- 移除内联样式 background: transparent，用你的 styl 文件控制样式 -->
+<footer id="footer-wrap">
+  <!-- 1. 底部图标区 - 完整显示，无判断 -->
+  <div id="footer_icons">
+    <div>
+      {iconLeft.map((i) => (
+        <a 
+          class="icon_link" 
+          href={i.link || '#'} 
+          title={i.desrc || ''}
+          rel={i.class === 'out' ? 'noopener external nofollow' : ''}
+          target={i.class === 'out' ? '_blank' : '_self'}
+          data-pjax-state={i.class === 'in' && theme.pjax?.enable ? true : undefined}
+        >
+          <i class={i.icon}></i>
+        </a>
+      ))}
+    </div>
+
+    {logoUrl && (
+      <div class="footer_logo_container" title="返回顶部" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+        <img class="footer_logo" src={logoUrl} />
+      </div>
+    )}
+
+    <div>
+      {iconRight.map((i) => (
+        <a 
+          class="icon_link" 
+          href={i.link || '#'} 
+          title={i.desrc || ''}
+          rel={i.class === 'out' ? 'noopener external nofollow' : ''}
+          target={i.class === 'out' ? '_blank' : '_self'}
+          data-pjax-state={i.class === 'in' && theme.pjax?.enable ? true : undefined}
+        >
+          <i class={i.icon}></i>
+        </a>
+      ))}
+    </div>
+  </div>
+
+  <!-- 2. 底部分组链接+友链区 - 完整显示，无判断 -->
+  <div id="footer_content">
+    {groupLinks.map((item) => (
+      <div class="footer-group">
+        <h3 class="footer-title">{item.group_title}</h3>
+        <div class="footer-links">
+          {item.footer_links.map((i) => (
+            <a 
+              class="footer-item" 
+              href={i.link || '#'}
+              target={i.class === 'out' ? '_blank' : '_self'}
+              data-pjax-state={i.class === 'in' && theme.pjax?.enable ? true : undefined}
+            >
+              {i.text}
+            </a>
+          ))}
+        </div>
+      </div>
+    ))}
+
+    <!-- 友链独立区块 -->
+    <div class="footer-group" id="friend-links-in-footer">
+      <h3 class="footer-title">
+        友链
+        <button title="换一批" id="refresh-friend-link" style="margin-left:8px; border:none; background:transparent; cursor:pointer;">
+          <i class="fa-solid fa-rotate-right"></i>
+        </button>
+      </h3>
+      <div class="footer-links">
+        <div id="friend-links-list" data-all-links={JSON.stringify(friendLinks)} data-show-num={showNum}>
+          {randomLinks.map((link) => (
+            <a class="footer-item" target="_blank" href={link.url || '#'}>{link.name}</a>
+          ))}
+        </div>
+        <a class="footer-item" href="/link/" data-pjax-state>查看更多</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. 底部版权+运行信息+备案区 - 完整显示，无判断 -->
+  <div id="footer-bottom">
+    <div class="footer-bottom-content">
+      <div class="footer-bottom-left">
+        <span class="copyright">
+          {copySince && copySince !== nowYear 
+            ? `©${copySince} - ${nowYear} By ` 
+            : `©${nowYear} By `}
+          <a 
+            target="_blank" 
+            rel="noopener" 
+            href={copyLink} 
+            title={`点击访问${author}的主页`}
+            style="margin-left:5px"
+          >
+            {author}
+          </a>
+        </span>
+        <div>
+          {footLeftLinks.map((i) => (
+            <a class="footer-bottom-link" target="_blank" href={i.link} rel="noopener external nofollow" title={i.desrc}>
+              {i.text}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <div class="footer-bottom-right">
+        <div id="runtime" title="本站运行时间">{calcRuntime()}</div>
+        <div>
+          {footRightLinks.map((i) => (
+            <a class="footer-bottom-link" target="_blank" href={i.link} rel="noopener external nofollow" title={i.desrc}>
+              {i.text}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- 脚本区：运行时间实时刷新 + 友链换一批 功能 (全容错) -->
+<script is:inline>
+  // 运行时间 每秒自动刷新（容错处理）
+  setInterval(() => {
+    const startTime = new Date(2025, 0, 1, 0, 0, 0);
+    const now = new Date();
+    const diffTime = now.getTime() - startTime.getTime();
+    const days = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diffTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diffTime % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diffTime % (1000 * 60)) / 1000);
+    const runtimeEl = document.getElementById('runtime');
+    if (runtimeEl) {
+      runtimeEl.textContent = `本站已苟活：${days} 天 ${hours} 时 ${minutes} 分 ${seconds} 秒`;
+    }
+  }, 1000);
+
+  // 友链 点击换一批 功能（全容错，防止元素不存在报错）
+  const refreshBtn = document.getElementById('refresh-friend-link');
+  if (refreshBtn) {
+    refreshBtn.addEventListener('click', function () {
+      const friendList = document.getElementById('friend-links-list');
+      if (!friendList) return;
+      const allLinks = JSON.parse(friendList.dataset.allLinks || '[]');
+      const showNum = parseInt(friendList.dataset.showNum || 5);
+      const randomLinks = allLinks.sort(() => Math.random() - 0.5).slice(0, showNum);
+      friendList.innerHTML = randomLinks.map(link => `<a class="footer-item" target="_blank" href="${link.url || '#'}">${link.name}</a>`).join('');
+    });
+  }
+</script>

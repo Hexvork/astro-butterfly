@@ -1,0 +1,35 @@
+{
+  "name": "blog_butterfly",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "newpage": "tsx cli.ts newpage",
+    "sync": "tsx cli.ts sync"
+  },
+  "dependencies": {
+    "@astrojs/check": "0.9.6",
+    "@astrojs/rss": "4.0.14",
+    "@astrojs/sitemap": "^3.6.0",
+    "@fortawesome/fontawesome-free": "^6.6.0",
+    "astro": "5.16.6",
+    "hexo-butterfly-wowjs": "^1.0.5",
+    "nib": "^1.2.0",
+    "sharp": "^0.33.5",
+    "stylus": "^0.64.0",
+    "typescript": "^5.6.3"
+  },
+  "devDependencies": {
+    "@expressive-code/plugin-collapsible-sections": "^0.39.0",
+    "@expressive-code/plugin-frames": "^0.39.0",
+    "@expressive-code/plugin-line-numbers": "^0.39.0",
+    "@types/node": "^25.0.3",
+    "@waline/client": "^3.4.2",
+    "astro-expressive-code": "^0.39.0",
+    "tsx": "^4.21.0"
+  }
+}
