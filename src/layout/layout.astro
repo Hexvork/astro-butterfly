@@ -1,7 +1,9 @@
 ---
-import { theme } from '../theme';
+// import { getBgPath } from '../utils'; // 假设 getBgPath 是一个导入的实用函数
+import { theme } from '../theme'; // 假设 theme 是一个导入的主题配置
 import { is_post } from '@src/utils';
-import { bgImgUrl } from '../config.js';
+const isPost = is_post(Astro.url);
+// import { is_archive, is_category, is_tag, is_post } from '../helpers'; // 假设这些是导入的辅助函数
 import Head from './head.astro';
 import HeaderIndex from './header/index.astro';
 import Footer from './footer.astro';
@@ -10,49 +12,51 @@ import LoadingIndex from './loadings/index.astro';
 import WidgetIndex from './widget/index.astro';
 import AdditionalJs from './additional-js.astro';
 import Rightside from './rightside.astro';
-
-// ✅ 完整规范的TS接口定义，替换原残缺接口
 interface Props {
   lang: string;
-  page: Record<string, any>;
+  page: any;
   postHeadings?: Array<{
     depth: number;
     slug: string;
     text: string;
   }>;
 }
-
-// ✅ 解构Props并指定类型，彻底消除所有解构警告
-const { lang, page, postHeadings } = Astro.props as Props;
-const isPost = is_post(Astro.url);
-
-// ✅ 背景图核心方法 + 完整TS类型注解 + 健壮性兜底
-const getBgPath = (bg: string | null | undefined): string => {
-  if (!bg || typeof bg !== 'string') return '';
-  return `background: url(${bg}) no-repeat center center; background-size: cover; background-attachment: fixed;`;
-};
+const { lang,page,postHeadings } = Astro.props;
 ---
-
-<html lang={lang} data-theme={theme.display_mode || 'light'} class={`${theme.aside?.enable && theme.aside?.hide ? 'hide-aside' : ''}`}>
-  <Head lang={lang} page={page} />
+<html lang={lang} data-theme={theme.display_mode} class={theme.aside.enable && theme.aside.hide ? 'hide-aside' : ''}>
+  <Head lang={lang} page={page}/>
   <body>
     <LoadingIndex />
+    <!-- {partial('includes/loading/index', {}, { cache: true })} -->
 
-    <!-- 背景图容器 - 完美生效+容错 -->
-    {bgImgUrl && (
-      <div id="web_bg" style={getBgPath(bgImgUrl)}></div>
-    )}
+    <!-- {theme.background && (
+      <div id="web_bg" style={getBgPath(theme.background)}></div>
+    )} -->
 
-    <Sidebar lang={lang} />
-    <div id="body-wrap" class={`${isPost ? 'post' : 'page'}${page.type ? ' type-' + page.type : ''}`}>
-      <HeaderIndex lang={lang} page={page} />
-      <main class='layout' id="content-inner">
+    <!-- {partial('includes/sidebar', {}, { cache: true })} -->
+    <Sidebar lang={lang}/>
+    <div id="body-wrap" class={isPost ? 'post' : 'page' + (page.type ? ' type-' + page.type : '')}>
+      <HeaderIndex lang={lang} page={page}/>
+
+      <main class='layout' id="content-inner" >
         <slot />
-        <WidgetIndex lang={lang} postHeadings={postHeadings} />
+        <WidgetIndex lang={lang} postHeadings={postHeadings}/>
+
+        <!-- {body ? (
+          <div>{body}</div>
+        ) : (
+          <>
+            <slot name="content"></slot>
+            {theme.aside.enable && page.aside !== false && (
+              <include src="./widget/index.astro" />
+            )}
+          </>
+        )} -->
       </main>
-      <Footer lang={lang} />
+
+      <Footer lang={lang}/>
     </div>
-    <Rightside lang={lang} />
+    <Rightside lang={lang}/>
     <AdditionalJs />
   </body>
 </html>
