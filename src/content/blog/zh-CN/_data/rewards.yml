@@ -1,0 +1,18 @@
+donate:
+  # 支付宝收款码
+  alipay:
+    name: 支付宝收款码
+    image: http://free.picui.cn/free/2025/09/29/68da65760d972.jpg
+  # 微信收款码
+  wechat:
+    name: 微信收款码
+    image: http://free.picui.cn/free/2025/09/29/68da65761f8e7.png
+  thank_img: http://cdn.picui.cn/vip/2025/11/14/691703f5e7b21.webp
+  # 赞赏页面链接
+  page_url: /rewards/
+  # 赞赏者列表
+  list:
+    - name: 不知名朋友
+      date: 2025-10-19
+      amount: ¥2.00
+      description: 感谢朋友的赞助~
