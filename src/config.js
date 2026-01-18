@@ -8,7 +8,7 @@ const configZhCN = {
     keywords: "Working",
     author: "Weston Brown",
     // ✅ 新增背景图配置（全局可用）
-    background: "../public/img/0/top.avif",
+    background: "/img/0/top.avif",
     copy: {
         enable: true,
         copyright: {
@@ -35,7 +35,7 @@ const configZhCN = {
     menu: {
         "归档": "/zh-CN/archives/ || fas fa-archive",
         "分类": "/zh-CN/categories/ || fas fa-folder-open",
-        "友链": "/zh-CN/links/ || fas fa-link",
+        "友链": "/zh-CN/link/ || fas fa-link",
         "留言板": "/zh-CN/board/ || fas fa-user",
         "语言||fas fa-language": {
             "中文": "/zh-CN/ || fas fa-c",
@@ -77,7 +77,7 @@ const configZhCN = {
             ],
             footer_logo: {
                 enable: true,
-                url: '../public/img/0/footer.gif'
+                url: '/img/0/footer.gif'
             },
             right: [
                 {
@@ -164,7 +164,7 @@ const configEn = {
     keywords: "Working",
     author: "Weston Brown",
     // ✅ 新增背景图配置（英文版本同步添加）
-    background: "../public/img/0/top.avif",
+    background: "/img/0/top.avif",
     copy: {
         enable: true,
         copyright: {
@@ -191,7 +191,7 @@ const configEn = {
     menu: {
         "Archives": "/en/archives/ || fas fa-archive",
         "Categories": "/en/categories/ || fas fa-folder-open",
-        "Friends & Personal Collection": "/en/links/ || fas fa-link",
+        "Friends & Personal Collection": "/en/link/ || fas fa-link",
         "Board": "/en/board/ || fas fa-user",
         "Language||fas fa-language": {
             "中文": "/zh-CN/ || fas fa-c",
@@ -233,7 +233,7 @@ const configEn = {
             ],
             footer_logo: {
                 enable: true,
-                url: '../public/img/0/footer.gif'
+                url: '/img/0/footer.gif'
             }
         },
         footer_group: {
@@ -290,10 +290,10 @@ export function getConfig(lang = 'zh-CN') {
     return lang === 'zh-CN' ? configZhCN : configEn;
 }
 
-export const background = "../public/img/0/top.avif";
+export const background = "/img/0/top.avif";
 
 // 在你的 config.js 最底部，export上面新增这一行即可
-export const bgImgUrl = "../public/img/0/top.avif";
+export const bgImgUrl = "/img/0/top.avif";
 
 
 // ✅ 同时导出两个配置对象+函数（ESM规范，适配Astro/Vite）
