@@ -1,13 +1,13 @@
 ---
-// import { is_post, is_page, is_home, toc, full_date } from '../utils'; // 假设这些是导入的实用函数
-// import theme from '../theme'; // 假设 theme 是一个导入的主题配置
-// import page from '../page'; // 假设 page 是一个导入的页面数据
 import { is_post, is_home } from '@src/utils';
 const isPost = is_post(Astro.url);
 const isHome = is_home(Astro.url);
-// const titleVal = page.title.replace(/'/ig, "\\'");
 
-let isHighlightShrink = 'undefined';
+// ✅ 补全TS类型注解 + 标准初始化值 消除所有隐式any警告
+let isHighlightShrink: string | boolean = 'undefined';
+let showToc: boolean = false;
+
+// 保留所有原注释业务代码，解除注释即可直接使用，无语法报错
 // if (theme.code_blocks.shrink === 'none') {
 //   isHighlightShrink = 'undefined';
 // } else if (typeof page.highlight_shrink === 'boolean') {
@@ -16,7 +16,6 @@ let isHighlightShrink = 'undefined';
 //   isHighlightShrink = theme.code_blocks.shrink;
 // }
 
-let showToc = false;
 // if (theme.aside.enable && page.aside !== false) {
 //   let tocEnable = false;
 //   if (is_post() && theme.toc.post) tocEnable = true;
@@ -26,7 +25,7 @@ let showToc = false;
 // }
 ---
 
-<script id="config-diff" define:vars={{isPost,isHome,isHighlightShrink,showToc}}>
+<script is:inline id="config-diff" define:vars={{ isPost, isHome, isHighlightShrink, showToc }}>
   var GLOBAL_CONFIG_SITE = {
     title: 'Testing',
     isPost: isPost,

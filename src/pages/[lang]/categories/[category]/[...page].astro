@@ -1,13 +1,12 @@
 ---
-import Layout from '@src/layout/layout.astro'; // 假设这是导入的布局组件
-import ArticleSort from '@src/layout/mixins/article-sort.astro'; // 假设这是导入的 ArticleSort 组件
+import Layout from '@src/layout/layout.astro';
+import ArticleSort from '@src/layout/mixins/article-sort.astro';
 import Pagination from '@src/layout/pagination.astro';
-import { useTranslations } from '@src/utils'; // 假设这是导入的实用函数
-// import { theme } from '@src/theme'; // 假设 theme 是一个导入的主题配置
-import { getBlogEntry,getCategoryList } from '@src/prework';
+import { useTranslations } from '@src/utils';
+import { getBlogEntry, getCategoryList } from '@src/prework';
 
 export async function getStaticPaths({ paginate }) {
-  const languages = ['en', 'zh-CN']; // 添加你支持的语言列表
+  const languages = ['en', 'zh-CN'];
   const paths = [];
   const POSTS_PER_PAGE = 10;
   
@@ -34,20 +33,22 @@ export async function getStaticPaths({ paginate }) {
   }
   return paths;
 }
-const { lang,category, page } = Astro.props;
+
+// ✅ 核心修复：补全TS类型断言 消除所有解构隐式any警告
+const { lang, category, page } = Astro.props as { lang: string; category: string; page: Record<string, any> };
 const t = useTranslations(lang);
 const decodedCategory = decodeURIComponent(category);
 const pageSettings = {
-  "title": `${t('page.category')}: ${decodedCategory}`,
-  "type": "categories",
-  "comments": false
-}
+  title: `${t('page.category')}: ${decodedCategory}`,
+  type: "categories",
+  comments: false
+};
 ---
 
 <Layout lang={lang} page={pageSettings}>
     <div id="category">
-      <div class="article-sort-title">{t('page.category') + ' - ' + `${decodedCategory}`}</div>
-      <ArticleSort lang={lang} posts={page.data}/>
-      <Pagination lang={lang} page={page}/>
+      <div class="article-sort-title">{`${t('page.category')} - ${decodedCategory}`}</div>
+      <ArticleSort lang={lang} posts={page.data} />
+      <Pagination lang={lang} page={page} />
     </div>
 </Layout>

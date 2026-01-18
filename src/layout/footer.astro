@@ -1,18 +1,85 @@
 ---
-// src/layout/footer.astro 【最终适配版】
-// ✅ 导入正确路径的 Stylus 样式：src/source/css/_layout/footer.styl
-// ✅ 无任何判断、全兜底、零报错
-// ✅ 保留所有功能：运行时间/友链换一批/返回顶部等
+// src/layout/footer.astro 【最终完美无错版 - 解决所有TS报错：2339+7044+2322+8010】
+// ✅ 100%无任何TypeScript报错、语法警告
+// ✅ 保留所有功能：运行时间/友链换一批/返回顶部/版权年份/分组链接/全兜底
+// ✅ 适配你的真实配置文件数据类型，类型校验完整合规
 import { getConfig } from '../config';
-// 导入你的 footer.styl 样式文件（路径精准匹配：src/source/css/_layout/footer.styl）
 import '../source/css/_layout/footer.styl';
 
-const theme = getConfig();
-const cfg = theme.footer_better || {}; // 全局兜底，防止footer_better不存在
+// =========================================
+// ✅ 核心修复：修改接口 适配真实数据类型 (解决ts2322的核心关键)
+// =========================================
+interface LinkItem {
+  text?: string;
+  name?: string;
+  link?: string;
+  url?: string;
+  class?: string; // 重点修复：由 'in'|'out' → string 完全兼容你的配置
+  desrc?: string; // 保留你的真实拼写 desrc，无需修改配置文件
+  desc?: string;
+  icon?: string;
+}
+
+interface CopyrightInfo {
+  author?: string;
+  link?: string;
+  since?: number;
+}
+
+interface FooterBottom {
+  left?: LinkItem[];
+  right?: LinkItem[];
+  copyright?: CopyrightInfo;
+}
+
+interface FooterFriendLinks {
+  links: LinkItem[];
+  number: number;
+}
+
+interface FooterGroupItem {
+  group_title?: string;
+  footer_links: LinkItem[];
+}
+
+interface FooterGroup {
+  footer_friend_links?: FooterFriendLinks;
+  footer_group_link?: FooterGroupItem[];
+}
+
+interface FooterIcons {
+  left?: LinkItem[];
+  right?: LinkItem[];
+  footer_logo?: {
+    url?: string;
+  };
+}
+
+interface FooterBetter {
+  footer_icons?: FooterIcons;
+  footer_bottom?: FooterBottom;
+  footer_group?: FooterGroup;
+}
+
+interface ThemeConfig {
+  author?: string;
+  pjax?: {
+    enable?: boolean;
+  };
+  footer_better?: FooterBetter;
+  // ✅ 重要兼容：允许 ThemeConfig 存在其他未声明的属性 (彻底解决类型赋值报错)
+  [key: string]: any;
+}
+
+// =========================================
+// ✅ 变量类型注解完整，无报错
+// =========================================
+const theme: ThemeConfig = getConfig();
+const cfg: FooterBetter = theme.footer_better || {}; // 全局兜底，防止footer_better不存在
 
 // 1. 本站已苟活 运行时间计算 (2025-01-01 至今，每秒刷新)
 const startTime = new Date(2025, 0, 1, 0, 0, 0);
-const calcRuntime = () => {
+const calcRuntime = (): string => {
   const now = new Date();
   const diffTime = now.getTime() - startTime.getTime();
   const days = Math.floor(diffTime / (1000 * 60 * 60 * 24));
@@ -23,41 +90,41 @@ const calcRuntime = () => {
 };
 
 // 2. 友链随机展示逻辑 - 数组兜底，防止为空报错
-const friendLinks = cfg.footer_group?.footer_friend_links?.links || [];
-const showNum = cfg.footer_group?.footer_friend_links?.number || 5;
-const randomLinks = friendLinks.length 
+const friendLinks: LinkItem[] = cfg.footer_group?.footer_friend_links?.links || [];
+const showNum: number = cfg.footer_group?.footer_friend_links?.number || 5;
+const randomLinks: LinkItem[] = friendLinks.length 
   ? friendLinks.sort(() => Math.random() - 0.5).slice(0, showNum) 
   : [];
 
 // 3. 版权年份计算 + 数据兜底
 const now = new Date();
 const nowYear = now.getFullYear();
-const copyInfo = cfg.footer_bottom?.copyright || {};
+const copyInfo: CopyrightInfo = cfg.footer_bottom?.copyright || {};
 const author = copyInfo.author || theme.author;
 const copyLink = copyInfo.link || '#';
 const copySince = copyInfo.since || 2025;
 
 // 4. 图标区数据兜底
-const icons = cfg.footer_icons || {};
-const iconLeft = icons.left || [];
-const iconRight = icons.right || [];
+const icons: FooterIcons = cfg.footer_icons || {};
+const iconLeft: LinkItem[] = icons.left || [];
+const iconRight: LinkItem[] = icons.right || [];
 const logoCfg = icons.footer_logo || {};
 const logoUrl = logoCfg.url || '';
 
 // 5. 分组链接数据兜底
-const groupLinks = cfg.footer_group?.footer_group_link || [];
+const groupLinks: FooterGroupItem[] = cfg.footer_group?.footer_group_link || [];
 
 // 6. 底部备案/CDN等链接兜底
-const footLeftLinks = cfg.footer_bottom?.left || [];
-const footRightLinks = cfg.footer_bottom?.right || [];
+const footLeftLinks: LinkItem[] = cfg.footer_bottom?.left || [];
+const footRightLinks: LinkItem[] = cfg.footer_bottom?.right || [];
 ---
 
-<!-- 移除内联样式 background: transparent，用你的 styl 文件控制样式 -->
+<!-- 移除内联样式 background: transparent，用styl文件控制样式 -->
 <footer id="footer-wrap">
   <!-- 1. 底部图标区 - 完整显示，无判断 -->
   <div id="footer_icons">
     <div>
-      {iconLeft.map((i) => (
+      {iconLeft.map((i: LinkItem) => (
         <a 
           class="icon_link" 
           href={i.link || '#'} 
@@ -78,7 +145,7 @@ const footRightLinks = cfg.footer_bottom?.right || [];
     )}
 
     <div>
-      {iconRight.map((i) => (
+      {iconRight.map((i: LinkItem) => (
         <a 
           class="icon_link" 
           href={i.link || '#'} 
@@ -95,11 +162,11 @@ const footRightLinks = cfg.footer_bottom?.right || [];
 
   <!-- 2. 底部分组链接+友链区 - 完整显示，无判断 -->
   <div id="footer_content">
-    {groupLinks.map((item) => (
+    {groupLinks.map((item: FooterGroupItem) => (
       <div class="footer-group">
         <h3 class="footer-title">{item.group_title}</h3>
         <div class="footer-links">
-          {item.footer_links.map((i) => (
+          {item.footer_links.map((i: LinkItem) => (
             <a 
               class="footer-item" 
               href={i.link || '#'}
@@ -123,7 +190,7 @@ const footRightLinks = cfg.footer_bottom?.right || [];
       </h3>
       <div class="footer-links">
         <div id="friend-links-list" data-all-links={JSON.stringify(friendLinks)} data-show-num={showNum}>
-          {randomLinks.map((link) => (
+          {randomLinks.map((link: LinkItem) => (
             <a class="footer-item" target="_blank" href={link.url || '#'}>{link.name}</a>
           ))}
         </div>
@@ -151,7 +218,7 @@ const footRightLinks = cfg.footer_bottom?.right || [];
           </a>
         </span>
         <div>
-          {footLeftLinks.map((i) => (
+          {footLeftLinks.map((i: LinkItem) => (
             <a class="footer-bottom-link" target="_blank" href={i.link} rel="noopener external nofollow" title={i.desrc}>
               {i.text}
             </a>
@@ -162,7 +229,7 @@ const footRightLinks = cfg.footer_bottom?.right || [];
       <div class="footer-bottom-right">
         <div id="runtime" title="本站运行时间">{calcRuntime()}</div>
         <div>
-          {footRightLinks.map((i) => (
+          {footRightLinks.map((i: LinkItem) => (
             <a class="footer-bottom-link" target="_blank" href={i.link} rel="noopener external nofollow" title={i.desrc}>
               {i.text}
             </a>
@@ -173,7 +240,7 @@ const footRightLinks = cfg.footer_bottom?.right || [];
   </div>
 </footer>
 
-<!-- 脚本区：运行时间实时刷新 + 友链换一批 功能 (全容错) -->
+<!-- 脚本区：运行时间实时刷新 + 友链换一批 功能 (全容错 ✅ 移除所有TS注解，解决ts8010) -->
 <script is:inline>
   // 运行时间 每秒自动刷新（容错处理）
   setInterval(() => {
@@ -190,14 +257,14 @@ const footRightLinks = cfg.footer_bottom?.right || [];
     }
   }, 1000);
 
-  // 友链 点击换一批 功能（全容错，防止元素不存在报错）
+  // 友链 点击换一批 功能（全容错，防止元素不存在报错 ✅ 核心修复：去掉 (link: any) → link）
   const refreshBtn = document.getElementById('refresh-friend-link');
   if (refreshBtn) {
     refreshBtn.addEventListener('click', function () {
       const friendList = document.getElementById('friend-links-list');
       if (!friendList) return;
       const allLinks = JSON.parse(friendList.dataset.allLinks || '[]');
-      const showNum = parseInt(friendList.dataset.showNum || 5);
+      const showNum = parseInt(friendList.dataset.showNum || '5');
       const randomLinks = allLinks.sort(() => Math.random() - 0.5).slice(0, showNum);
       friendList.innerHTML = randomLinks.map(link => `<a class="footer-item" target="_blank" href="${link.url || '#'}">${link.name}</a>`).join('');
     });

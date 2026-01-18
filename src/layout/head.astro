@@ -1,45 +1,43 @@
 ---
-// import { is_archive, is_tag, is_category, is_current, is_home, findArchivesTitle, urlNoIndex, _p } from '../utils'; // 假设这些是导入的实用函数
-import { theme }from '../theme'; // 假设 theme 是一个导入的主题配置
-import { getConfig }from '../config'; // 假设 theme 是一个导入的主题配置
-const { page,lang } = Astro.props;
+import { theme } from '../theme';
+import { getConfig } from '../config';
+import { useTranslations, is_home, is_archive, is_category } from '@src/utils';
 import Config from './head/config.astro';
 import ConfigSite from './head/config_site.astro';
+
+// 解构props + 完整TS类型注解 彻底消除隐式any警告
+const { page, lang } = Astro.props as { page: Record<string, any>, lang: string };
 const config = getConfig(lang);
-import { useTranslations,is_home,is_archive, is_category } from '@src/utils';
 const t = useTranslations(lang);
 
-// import page from '../page'; // 假设 page 是一个导入的页面数据
-import '@fortawesome/fontawesome-free/css/all.min.css'
+// 样式&字体引入
+import '@fortawesome/fontawesome-free/css/all.min.css';
 import '../source/css/index.styl';
 
+// 页面类型判断
 const isHome = is_home(Astro.url);
 const isArchive = is_archive(Astro.url);
 const isCategory = is_category(Astro.url);
 
-let pageTitle;
-// pageTitle = config.title || '';
+// ✅ 修复pageTitle隐式any + 完整赋值逻辑 + 空值兜底
+let pageTitle: string = '';
 if (isArchive) {
-  pageTitle = page.title
-  // page.title = findArchivesTitle(page, theme.menu, date);
-// }
-// if (is_tag()) {
-//   pageTitle = _p('page.tag') + ': ' + page.tag;
+  pageTitle = page.title || '';
 } else if (isCategory) {
-  // pageTitle = t('page.category') + ': ' + page.categories;
-  pageTitle = page.title;
-// } else if (is_current('/404.html', [strict])) {
-//   pageTitle = _p('error404');
+  pageTitle = page.title || '';
 } else {
   pageTitle = page.title || config.title || '';
 }
 
-const tabTitle = isHome || !pageTitle ? config.title : pageTitle + ' | ' + config.title;
-const pageAuthor = config.author;
-const pageCopyright = config.copyright || config.author;
+// 网页标题拼接 + 兜底处理
+const tabTitle: string = isHome || !pageTitle ? config.title || '' : `${pageTitle} | ${config.title}`;
+const pageAuthor: string = config.author || '';
+const pageCopyright: string = config.copyright || config.author || '';
+
+// 主题配色 + 可选链容错 + 类型断言
 const themeColorLight = '#ffffff';
 const themeColorDark = '#0d0d0d';
-const themeColor = theme.display_mode === 'dark' ? themeColorDark : themeColorLight;
+const themeColor: string = theme.display_mode === 'dark' ? themeColorDark : themeColorLight;
 ---
 <head>
   <meta charset="UTF-8" />
@@ -54,7 +52,7 @@ const themeColor = theme.display_mode === 'dark' ? themeColorDark : themeColorLi
   <!-- Open Graph -->
   <!-- <include src="./head/Open_Graph.astro" /> -->
 
-  <link rel="shortcut icon" href="/img/title.webp">
+  <link rel="shortcut icon" href="/img/title.webp" />
   <!-- <link rel="canonical" href={urlNoIndex(null, config.pretty_urls.trailing_index, config.pretty_urls.trailing_html)} /> -->
 
   <!-- 預解析 -->
@@ -84,10 +82,9 @@ const themeColor = theme.display_mode === 'dark' ? themeColorDark : themeColorLi
   <!-- analytics -->
   <!-- <include src="./head/analytics.astro" /> -->
 
-
   <!-- global config -->
-  <!-- <Config config={config} lang={lang}/>
-  <ConfigSite /> -->
+  <Config config={config} lang={lang} />
+  <ConfigSite />
 
   <!-- {injectHtml(theme.inject.head)} -->
 </head>
