@@ -1,6 +1,7 @@
 // src/config.js 【完整覆盖版】✅ footer_bottom left/right 分别显示多张图片+超链接
 // 保留所有原有配置：background/bgImgUrl/菜单/友链/版权/运行时间等
 // ✅ 核心改动：left/right 数组追加图片HTML，图文混合，左右侧独立配置多张图
+// ✅ 新增字体配置：全局字体GuanKiapTsingKhai，代码字体JetBrains Mono
 const configZhCN = {
     title: "Weston Blog",
     description: "探索未曾设想的道路",
@@ -20,6 +21,14 @@ const configZhCN = {
     tag_dir: "tags",
     archive_dir: "archives",
     category_dir: "categories",
+    // ✅ 新增字体配置节点
+    font: {
+        font_family: "GuanKiapTsingKhai, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Lato, Roboto, 'PingFang SC', sans-serif",
+        code_font_family: "JetBrains Mono, consolas, Menlo, 'PingFang SC', GuanKiapTsingKhai, sans-serif"
+    },
+    blog_title_font: {
+        font_family: "GuanKiapTsingKhai"
+    },
     subtitle: {
         enable: true,
         effect: true,
@@ -224,6 +233,14 @@ const configEn = {
     tag_dir: "tags",
     archive_dir: "archives",
     category_dir: "categories",
+    // ✅ 新增字体配置节点（英文端同步）
+    font: {
+        font_family: "GuanKiapTsingKhai, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Lato, Roboto, sans-serif",
+        code_font_family: "JetBrains Mono, consolas, Menlo, sans-serif"
+    },
+    blog_title_font: {
+        font_family: "GuanKiapTsingKhai"
+    },
     subtitle: {
         enable: true,
         effect: true,

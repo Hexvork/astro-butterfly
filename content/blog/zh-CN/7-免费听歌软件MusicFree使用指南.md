@@ -20,7 +20,20 @@ swiper_cover: /img/7/7-0.webp
 
 ### 移动端
 
-{% link Github安卓下载链接,maotoumao@MusicFree,https://github.com/maotoumao/MusicFree/releases %}
+<a href="https://github.com/maotoumao/MusicFree/releases" 
+   style="text-decoration: none; display: block; max-width: 400px;">
+  <div style="display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 8px; background: #f5f5f5; cursor: pointer; transition: background 0.2s;">
+    <div style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+      <img src="/img/0/github.avif"  
+           style="width: 100%; height: 100%; object-fit: contain; display: block;">
+    </div>
+    <div style="flex: 1; min-width: 0;">
+      <div style="font-size: 15px; font-weight: 500; color: #1f2937; margin: 0;">Github安卓下载链接</div>
+      <div style="font-size: 12px; color: #6b7280; margin: 2px 0 0 0;">maotoumao@MusicFree</div>
+    </div>
+    <div style="width: 20px; height: 20px; color: #9ca3af; flex-shrink: 0;">→</div>
+  </div>
+</a>
 
 ❓如何选择
 
@@ -34,7 +47,20 @@ swiper_cover: /img/7/7-0.webp
 
 ### 桌面端
 
-{% link Github桌面端下载链接,maotoumao@MusicFreeDesktop,https://github.com/maotoumao/MusicFreeDesktop/releases/tag/v0.0.8 %}
+<a href="https://github.com/maotoumao/MusicFreeDesktop/releases/tag/v0.0.8" 
+   style="text-decoration: none; display: block; max-width: 400px;">
+  <div style="display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 8px; background: #f5f5f5; cursor: pointer; transition: background 0.2s;">
+    <div style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+      <img src="/img/0/github.avif"  
+           style="width: 100%; height: 100%; object-fit: contain; display: block;">
+    </div>
+    <div style="flex: 1; min-width: 0;">
+      <div style="font-size: 15px; font-weight: 500; color: #1f2937; margin: 0;">Github桌面端下载链接</div>
+      <div style="font-size: 12px; color: #6b7280; margin: 2px 0 0 0;">maotoumao@MusicFreeDesktop</div>
+    </div>
+    <div style="width: 20px; height: 20px; color: #9ca3af; flex-shrink: 0;">→</div>
+  </div>
+</a>
 
 | 安装包名称                                         | 适配系统 & 架构                  | 适合的设备                         | 补充说明                         |
 | --------------------------------------------- | -------------------------- | ----------------------------- | ---------------------------- |
