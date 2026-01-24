@@ -3,12 +3,7 @@ title: Hexo-butterfly主题修改默认字体
 date: 2025-11-14
 updated: 2025-11-14
 abbrlink: 3.html
-tags:
-  - Hexo
-  - 0基础
-  - 0成本
-  - 字体
-  - butterfly
+tags: ["Hexo", "Fonts","Butterfly"]
 banner: /img/3/3-0.avif
 cover: /img/3/3-0.avif
 categories: 教程

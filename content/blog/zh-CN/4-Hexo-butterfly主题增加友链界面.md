@@ -3,11 +3,7 @@ title: Hexo-butterfly主题增加友链界面
 date: 2025-11-16
 updated: 2025-11-16
 abbrlink: 4.html
-tags:
-  - Hexo
-  - 0基础
-  - 0成本
-  - butterfly
+tags: ["Hexo","Butterfly","Link"]
 categories: 教程
 description: Hexo-butterfly主题添加友链界面：创建link/index.md页面与_data/link.yml数据文件，配置导航栏菜单，执行hexo三联命令即可完成部署。
 cover: /img/4/4-0.avif
@@ -17,6 +13,11 @@ banner: /img/4/4-0.avif
 ### 一、创建页面文件
 
 在`blog/source/link`中创建文件`index.md`
+
+<div class="note note-info">
+  <div class="note-title">信息提示</div>
+  这是信息类型的 note，包含标题和内容。
+</div>
 
 打开文件，把文件头改成这样
 

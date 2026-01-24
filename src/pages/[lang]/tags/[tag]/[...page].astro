@@ -1,0 +1,62 @@
+---
+import Layout from '@src/layout/layout.astro';
+import ArticleSort from '@src/layout/mixins/article-sort.astro';
+import Pagination from '@src/layout/pagination.astro';
+import { useTranslations } from '@src/utils';
+import { getBlogEntry, gettagsList } from '@src/prework';
+
+export async function getStaticPaths({ paginate }) {
+  const paths = [];
+  // 循环你支持的语言
+  for (const lang of ['en', 'zh-CN']) {
+    try {
+      const tags = await gettagsList(lang) || [];
+      const blogEntries = await getBlogEntry(lang) || [];
+      
+      for (const tag of tags) {
+        if (!tag?.name) continue;
+        // 筛选当前标签的文章
+        const tagPosts = blogEntries.filter(entry => {
+          const postTags = entry.data.tags;
+          return postTags && (Array.isArray(postTags) ? postTags.includes(tag.name) : postTags === tag.name);
+        });
+        if (tagPosts.length === 0) continue;
+        
+        // 统一编码标签名（处理中文/空格/特殊符号）
+        const encodedTag = encodeURIComponent(tag.name)
+          .replace(/%20/g, '-')
+          .replace(/!/g, '%21')
+          .replace(/#/g, '%23');
+        
+        // 生成分页路径
+        paths.push(...paginate(tagPosts, {
+          params: { lang, tag: encodedTag },
+          props: { lang, originalTag: tag.name },
+          pageSize: 10,
+          routePattern: `/${lang}/tags/${encodedTag}/[page]`,
+          slugFormatter: (pageNum) => pageNum > 1 ? pageNum.toString() : undefined
+        }));
+      }
+    } catch (err) {
+      console.error(`生成${lang}标签路径失败:`, err);
+    }
+  }
+  return paths;
+}
+
+// 解构参数
+const { lang, originalTag, page } = Astro.props as {
+  lang: string;
+  originalTag: string;
+  page: { data: any[]; url: { prev?: string; next?: string }; currentPage: number; totalPages: number };
+};
+const t = useTranslations(lang);
+---
+
+<Layout lang={lang} page={{ title: `${t('page.tag')} - ${originalTag}`, type: "tags", comments: false }}>
+  <div id="tag">
+    <div class="article-sort-title">{`${t('page.tag')} - ${originalTag}`}</div>
+    <ArticleSort lang={lang} posts={page.data} />
+    <Pagination lang={lang} page={page} />
+  </div>
+</Layout>

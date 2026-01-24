@@ -12,6 +12,7 @@ import LoadingIndex from './loadings/index.astro';
 import WidgetIndex from './widget/index.astro';
 import AdditionalJs from './additional-js.astro';
 import Rightside from './rightside.astro';
+
 interface Props {
   lang: string;
   page: any;
@@ -21,17 +22,30 @@ interface Props {
     text: string;
   }>;
 }
-const { lang,page,postHeadings } = Astro.props;
+
+const { lang, page, postHeadings } = Astro.props;
 ---
+
 <html lang={lang} data-theme={theme.display_mode} class={theme.aside.enable && theme.aside.hide ? 'hide-aside' : ''}>
   <Head lang={lang} page={page}/>
   <body>
     <LoadingIndex />
     <!-- {partial('includes/loading/index', {}, { cache: true })} -->
 
-    <!-- {theme.background && (
-      <div id="web_bg" style={getBgPath(theme.background)}></div>
-    )} -->
+    <!-- 背景图设置：/img/0/top.avif -->
+    <div id="web_bg" style="
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      background-image: url('/img/0/top.avif');
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+    "></div>
 
     <!-- {partial('includes/sidebar', {}, { cache: true })} -->
     <Sidebar lang={lang}/>

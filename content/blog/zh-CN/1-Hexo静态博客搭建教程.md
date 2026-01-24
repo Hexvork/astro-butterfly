@@ -4,11 +4,7 @@ date: 2025-09-30
 updated: 2025-09-30
 abbrlink: 1.html
 top: true
-tags:
-  - Hexo
-  - Blog
-  - 0基础
-  - 0成本
+tags: ["Hexo","Blog"]
 banner: /img/1/1-0.avif
 cover: /img/1/1-0.avif
 categories: 教程
@@ -18,6 +14,12 @@ swiper_desc: 该教程介绍Hexo静态博客搭建步骤：需安装Git、Node.j
 swiper_cover: /img/1/1-0.avif
 ---
 ## 所需工具
+
+<div class="tip-box-info">
+  <div class="tip-icon-info">i</div>
+  <p class="tip-text-info">这是一个信息提示框</p>
+</div>
+
 
 ### 1.Git（用于同步博客、部署hexo等）
 官网：[点这里进入](https://git-scm.com/)

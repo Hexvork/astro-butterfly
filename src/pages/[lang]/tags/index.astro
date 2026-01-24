@@ -1,0 +1,86 @@
+---
+import Layout from '@src/layout/layout.astro';
+import { gettagsList } from '@src/prework';
+import { useTranslations } from '@src/utils';
+
+export async function getStaticPaths() {
+  const languages = ['en', 'zh-CN'];
+  return languages.map(lang => ({
+    params: { lang },
+  }));
+}
+
+const { lang } = Astro.params;
+const t = useTranslations(lang);
+
+const page = {
+  "title": t('page.tag'),
+  "type": "tags",
+  "comments": false
+};
+
+// 错误捕获 + 函数校验（保留）
+let tags = [];
+try {
+  console.log('gettagsList 类型:', typeof gettagsList);
+  if (typeof gettagsList !== 'function') {
+    throw new Error('gettagsList 不是函数，请检查 prework 文件的命名导出');
+  }
+
+  tags = await gettagsList(lang) || [];
+
+  if (!Array.isArray(tags)) {
+    throw new Error('gettagsList 返回值不是数组，期望格式：[{name: "", path: "", count: 0}]');
+  }
+} catch (error) {
+  console.error('获取标签列表失败:', error);
+  tags = [];
+}
+
+// 标签类型定义（保持不变）
+interface Tag {
+  name: string;
+  path: string;
+  count: number;
+}
+
+// ✅ 核心修改：重构 listTags 函数，统一编码规则
+function listTags(tags: Tag[], options: any = {}): string {
+  const { showCount = true, className = 'tag-list' } = options;
+  
+  if (tags.length === 0) {
+    return `<div class="no-tags">${t('message.no_tags') || '暂无标签'}</div>`;
+  }
+
+  let result = `<ul class="${className}">`;
+  tags.forEach(tag => {
+    if (!tag.name) return;
+
+    // ✅ 关键1：统一标签名编码（和二级页保持一致）
+    const encodedTag = encodeURIComponent(tag.name)
+      .replace(/%20/g, '-')    // 空格替换为-，避免URL显示%20
+      .replace(/!/g, '%21')    // 强制编码特殊符号
+      .replace(/#/g, '%23');
+
+    // ✅ 关键2：生成正确的跳转链接（不再依赖 tag.path）
+    // 格式：/语言/tags/编码后的标签名（和二级页路由匹配）
+    const tagLink = `/${lang}/tags/${encodedTag}`;
+
+    // 渲染标签项（使用新的编码链接）
+    result += `<li class="tag-list-item">
+      <a class="tag-list-link" href="${tagLink}">${tag.name}</a>
+      ${showCount ? `<span class="tag-list-count">(${tag.count || 0})</span>` : ''}
+    </li>`;
+  });
+  result += `</ul>`;
+  return result;
+}
+
+const list = listTags(tags);
+---
+
+<Layout lang={lang} page={page}>
+  <div id="page">
+      <div id="tag-lists" set:html={list}/>
+  </div>
+</Layout>

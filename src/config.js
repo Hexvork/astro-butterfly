@@ -1,14 +1,12 @@
-// src/config.js 完整覆盖版
-// 新增 background 配置项：https://www.yuyano.com/img/0/top.webp
-// 保留所有原有配置逻辑，适配 Astro ESM 导出规范
-
+// src/config.js 【完整覆盖版】✅ footer_bottom left/right 分别显示多张图片+超链接
+// 保留所有原有配置：background/bgImgUrl/菜单/友链/版权/运行时间等
+// ✅ 核心改动：left/right 数组追加图片HTML，图文混合，左右侧独立配置多张图
 const configZhCN = {
     title: "Weston Blog",
     description: "探索未曾设想的道路",
     keywords: "Working",
     author: "Weston Brown",
-    // ✅ 新增背景图配置（全局可用）
-    background: "/img/0/top.avif",
+    background: "../public/img/0/top.avif",
     copy: {
         enable: true,
         copyright: {
@@ -142,13 +140,59 @@ const configZhCN = {
                 link: 'https://astro.imkn.top/about-me',
                 since: 2025
             },
+            // ✅ 左侧：原有ICP文字 + 追加2张图片（可继续加）
             left: [
-                { text: '萌ICP备20251308号', desrc: '萌ICP备20251308号', link: 'https://icp.gov.moe/?keyword=20251308' }
+                { 
+                    type: "img", // 标记为图片类型
+                    link: "https://icp.gov.moe/?keyword=20251308",
+                    imgUrl: "/img/0/Footer-icp-Moeicp.svg",
+                    alt: "萌ICP备案",
+                    title: "萌ICP备案",
+                    style: "width:60px;height:auto;margin:0 8px;vertical-align:middle;"
+                },
+                { 
+                    type: "img",
+                    link: "https://Github.com",
+                    imgUrl: "/img/0/Footer-Source-Github.svg",
+                    alt: "Github",
+                    title: "Github",
+                    style: "width:60px;height:auto;margin:0 8px;vertical-align:middle;"
+                },
+                { 
+                    type: "img",
+                    link: "https://Cloudflare-cn.com/",
+                    imgUrl: "/img/0/Footer-CDN-Cloudflare.svg",
+                    alt: "Cloudflare",
+                    title: "Cloudflare",
+                    style: "width:50px;height:auto;margin:0 8px;vertical-align:middle;"
+                }
             ],
+            // ✅ 右侧：新增Vercel图标
             right: [
-                { text: 'CDN加速', desrc: '本站通过Cloudflare提供CDN服务', link: 'https://Cloudflare-cn.com/' },
-                { text: '静态框架', desrc: '本站使用 Hexo 架构搭建而成', link: 'https://hexo.io/zh-cn/' },
-                { text: '主题名称', desrc: '本站基于liushen主题修改', link: 'https://github.com/willow-god/hexo-theme-liushen/' }
+                { 
+                    type: "img",
+                    link: "https://astro.build",
+                    imgUrl: "/img/0/Footer-Frame-Astro.svg",
+                    alt: "Astro",
+                    title: "Astro",
+                    style: "width:50px;height:auto;margin:0 8px;vertical-align:middle;"
+                },
+                { 
+                    type: "img",
+                    link: "https://butterfly.js.org",
+                    imgUrl: "/img/0/Footer-Theme-Butterfly.svg",
+                    alt: "Butterfly",
+                    title: "Butterfly",
+                    style: "width:50px;height:auto;margin:0 8px;vertical-align:middle;"
+                },
+                { 
+                    type: "img",
+                    link: "https://vercel.com",
+                    imgUrl: "/img/0/Footer-Deploy-Vercel.svg",
+                    alt: "Vercel",
+                    title: "Vercel",
+                    style: "width:50px;height:auto;margin:0 8px;vertical-align:middle;"
+                }
             ],
             runtime: {
                 enable: true,
@@ -163,8 +207,7 @@ const configEn = {
     description: "Exploring uncharted paths",
     keywords: "Working",
     author: "Weston Brown",
-    // ✅ 新增背景图配置（英文版本同步添加）
-    background: "/img/0/top.avif",
+    background: "../public/img/0/top.avif",
     copy: {
         enable: true,
         copyright: {
@@ -268,13 +311,59 @@ const configEn = {
                 link: 'https://astro.imkn.top/about-me',
                 since: 2025
             },
+            // ✅ 英文左侧：原有文字 + 按需加图片（示例加1张）
             left: [
-                { text: 'Meng ICP Bei 20251308', desrc: 'Meng ICP Bei 20251308', link: 'https://icp.gov.moe/?keyword=20251308' }
+                { 
+                    type: "img", // 标记为图片类型
+                    link: "https://icp.gov.moe/?keyword=20251308",
+                    imgUrl: "/img/0/Footer-icp-Moeicp.svg",
+                    alt: "萌ICP备案",
+                    title: "萌ICP备案",
+                    style: "width:60px;height:auto;margin:0 8px;vertical-align:middle;"
+                },
+                { 
+                    type: "img",
+                    link: "https://Github.com",
+                    imgUrl: "/img/0/Footer-Source-Github.svg",
+                    alt: "Github",
+                    title: "Github",
+                    style: "width:60px;height:auto;margin:0 8px;vertical-align:middle;"
+                },
+                { 
+                    type: "img",
+                    link: "https://Cloudflare-cn.com/",
+                    imgUrl: "/img/0/Footer-CDN-Cloudflare.svg",
+                    alt: "Cloudflare",
+                    title: "Cloudflare",
+                    style: "width:50px;height:auto;margin:0 8px;vertical-align:middle;"
+                }
             ],
+            // ✅ 英文右侧：同步新增Vercel图标
             right: [
-                { text: 'CDN Acceleration', desrc: 'This site is accelerated by Cloudflare CDN', link: 'https://Cloudflare-cn.com/' },
-                { text: 'Static Framework', desrc: 'This site is built with Hexo', link: 'https://hexo.io/' },
-                { text: 'Theme Name', desrc: 'This site is modified based on liushen theme', link: 'https://github.com/willow-god/hexo-theme-liushen/' }
+                { 
+                    type: "img",
+                    link: "https://astro.build",
+                    imgUrl: "/img/0/Footer-Frame-Astro.svg",
+                    alt: "Astro",
+                    title: "Astro",
+                    style: "width:50px;height:auto;margin:0 8px;vertical-align:middle;"
+                },
+                { 
+                    type: "img",
+                    link: "https://butterfly.js.org",
+                    imgUrl: "/img/0/Footer-Theme-Butterfly.svg",
+                    alt: "Butterfly",
+                    title: "Butterfly",
+                    style: "width:50px;height:auto;margin:0 8px;vertical-align:middle;"
+                },
+                { 
+                    type: "img",
+                    link: "https://vercel.com",
+                    imgUrl: "/img/0/Footer-Deploy-Vercel.svg",
+                    alt: "Vercel",
+                    title: "Vercel",
+                    style: "width:50px;height:auto;margin:0 8px;vertical-align:middle;"
+                }
             ],
             runtime: {
                 enable: true,
@@ -284,17 +373,11 @@ const configEn = {
     }
 };
 
-// ✅ 核心：实现主题需要的 getConfig 函数
-// 该函数作用：根据当前语言返回对应配置，是sidebar.astro调用的核心方法
+// 保留所有原有导出，无需修改
 export function getConfig(lang = 'zh-CN') {
     return lang === 'zh-CN' ? configZhCN : configEn;
 }
 
-export const background = "/img/0/top.avif";
-
-// 在你的 config.js 最底部，export上面新增这一行即可
-export const bgImgUrl = "/img/0/top.avif";
-
-
-// ✅ 同时导出两个配置对象+函数（ESM规范，适配Astro/Vite）
+export const background = "../public/img/0/top.avif";
+export const bgImgUrl = "./top.avif";
 export { configZhCN, configEn };

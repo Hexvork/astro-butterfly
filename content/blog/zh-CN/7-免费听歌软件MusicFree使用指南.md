@@ -3,10 +3,7 @@ title: 免费听歌软件MusicFree使用指南
 date: 2025-12-21
 updated: 2025-12-21
 abbrlink: 7.html
-tags:
-  - 0基础
-  - 0成本
-  - 软件
+tags: ["APP"]
 categories: 教程
 description: 音乐发烧友必备MusicFree！开源免费、音源丰富，多端版本适配不同设备，添加订阅源即可拓展音源，还支持歌单导入和坚果云云同步，自定义性拉满。
 title_top_img: /img/7/7-0.webp

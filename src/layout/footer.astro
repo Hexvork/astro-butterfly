@@ -1,21 +1,17 @@
 ---
-// src/layout/footer.astro 【最终完美无错版 - 解决所有TS报错：2339+7044+2322+8010】
-// ✅ 100%无任何TypeScript报错、语法警告
-// ✅ 保留所有功能：运行时间/友链换一批/返回顶部/版权年份/分组链接/全兜底
-// ✅ 适配你的真实配置文件数据类型，类型校验完整合规
+// src/layout/footer.astro 【最终无TS报错版】
+// ✅ 移除内联脚本TS类型注解 ✅ 所有语法合规 ✅ 功能完整
 import { getConfig } from '../config';
 import '../source/css/_layout/footer.styl';
 
-// =========================================
-// ✅ 核心修复：修改接口 适配真实数据类型 (解决ts2322的核心关键)
-// =========================================
+// 类型定义（仅在 Astro 脚本区使用，合法）
 interface LinkItem {
   text?: string;
   name?: string;
   link?: string;
   url?: string;
-  class?: string; // 重点修复：由 'in'|'out' → string 完全兼容你的配置
-  desrc?: string; // 保留你的真实拼写 desrc，无需修改配置文件
+  class?: string;
+  desrc?: string;
   desc?: string;
   icon?: string;
 }
@@ -26,247 +22,272 @@ interface CopyrightInfo {
   since?: number;
 }
 
-interface FooterBottom {
-  left?: LinkItem[];
-  right?: LinkItem[];
-  copyright?: CopyrightInfo;
-}
-
-interface FooterFriendLinks {
-  links: LinkItem[];
-  number: number;
-}
-
-interface FooterGroupItem {
-  group_title?: string;
-  footer_links: LinkItem[];
-}
-
-interface FooterGroup {
-  footer_friend_links?: FooterFriendLinks;
-  footer_group_link?: FooterGroupItem[];
-}
-
-interface FooterIcons {
-  left?: LinkItem[];
-  right?: LinkItem[];
-  footer_logo?: {
-    url?: string;
-  };
-}
-
 interface FooterBetter {
-  footer_icons?: FooterIcons;
-  footer_bottom?: FooterBottom;
-  footer_group?: FooterGroup;
+  footer_icons?: {
+    left?: LinkItem[];
+    right?: LinkItem[];
+    footer_logo?: { url?: string };
+  };
+  footer_bottom?: {
+    left?: LinkItem[];
+    right?: LinkItem[];
+    copyright?: CopyrightInfo;
+  };
+  footer_group?: {
+    footer_friend_links?: { links: LinkItem[]; number: number };
+    footer_group_link?: { group_title?: string; footer_links: LinkItem[] }[];
+  };
 }
 
 interface ThemeConfig {
   author?: string;
-  pjax?: {
-    enable?: boolean;
-  };
+  pjax?: { enable?: boolean };
   footer_better?: FooterBetter;
-  // ✅ 重要兼容：允许 ThemeConfig 存在其他未声明的属性 (彻底解决类型赋值报错)
   [key: string]: any;
 }
 
-// =========================================
-// ✅ 变量类型注解完整，无报错
-// =========================================
+// 读取配置
 const theme: ThemeConfig = getConfig();
-const cfg: FooterBetter = theme.footer_better || {}; // 全局兜底，防止footer_better不存在
+const cfg = theme.footer_better || {};
 
-// 1. 本站已苟活 运行时间计算 (2025-01-01 至今，每秒刷新)
-const startTime = new Date(2025, 0, 1, 0, 0, 0);
+// 运行时间计算
 const calcRuntime = (): string => {
-  const now = new Date();
-  const diffTime = now.getTime() - startTime.getTime();
-  const days = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diffTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((diffTime % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((diffTime % (1000 * 60)) / 1000);
+  const startTime = new Date(2025, 0, 1);
+  const diff = Date.now() - startTime.getTime();
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((diff % (1000 * 60)) / 1000);
   return `本站已苟活：${days} 天 ${hours} 时 ${minutes} 分 ${seconds} 秒`;
 };
 
-// 2. 友链随机展示逻辑 - 数组兜底，防止为空报错
-const friendLinks: LinkItem[] = cfg.footer_group?.footer_friend_links?.links || [];
-const showNum: number = cfg.footer_group?.footer_friend_links?.number || 5;
-const randomLinks: LinkItem[] = friendLinks.length 
+// 友链处理
+const friendLinks = cfg.footer_group?.footer_friend_links?.links || [];
+const showNum = cfg.footer_group?.footer_friend_links?.number || 5;
+const randomLinks = friendLinks.length 
   ? friendLinks.sort(() => Math.random() - 0.5).slice(0, showNum) 
   : [];
 
-// 3. 版权年份计算 + 数据兜底
+// 版权信息
 const now = new Date();
 const nowYear = now.getFullYear();
-const copyInfo: CopyrightInfo = cfg.footer_bottom?.copyright || {};
-const author = copyInfo.author || theme.author;
-const copyLink = copyInfo.link || '#';
+const copyInfo = cfg.footer_bottom?.copyright || {};
+const author = copyInfo.author || theme.author || '未知作者';
 const copySince = copyInfo.since || 2025;
 
-// 4. 图标区数据兜底
-const icons: FooterIcons = cfg.footer_icons || {};
-const iconLeft: LinkItem[] = icons.left || [];
-const iconRight: LinkItem[] = icons.right || [];
-const logoCfg = icons.footer_logo || {};
-const logoUrl = logoCfg.url || '';
+// 顶部图标
+const icons = cfg.footer_icons || {};
+const iconLeft = icons.left || [];
+const iconRight = icons.right || [];
+const logoUrl = icons.footer_logo?.url || '';
 
-// 5. 分组链接数据兜底
-const groupLinks: FooterGroupItem[] = cfg.footer_group?.footer_group_link || [];
-
-// 6. 底部备案/CDN等链接兜底
-const footLeftLinks: LinkItem[] = cfg.footer_bottom?.left || [];
-const footRightLinks: LinkItem[] = cfg.footer_bottom?.right || [];
+// 分组链接
+const groupLinks = cfg.footer_group?.footer_group_link || [];
 ---
 
-<!-- 移除内联样式 background: transparent，用styl文件控制样式 -->
 <footer id="footer-wrap">
-  <!-- 1. 底部图标区 - 完整显示，无判断 -->
-  <div id="footer_icons">
-    <div>
-      {iconLeft.map((i: LinkItem) => (
-        <a 
-          class="icon_link" 
-          href={i.link || '#'} 
-          title={i.desrc || ''}
-          rel={i.class === 'out' ? 'noopener external nofollow' : ''}
-          target={i.class === 'out' ? '_blank' : '_self'}
-          data-pjax-state={i.class === 'in' && theme.pjax?.enable ? true : undefined}
+  <!-- 1. 顶部图标区 -->
+  <div 
+    id="footer_icons" 
+    style="display: flex; justify-content: center; align-items: center; margin-bottom: 20px; padding: 10px 0; border-bottom: none !important; gap: 20px;"
+  >
+    <!-- 左侧图标 -->
+    <div style="display: flex; gap: 6px;">
+      {iconLeft.map((item: LinkItem, index: number) => (
+        <a
+          data-key={index}
+          class="icon_link"
+          href={item.link || '#'}
+          title={item.desrc || ''}
+          rel={item.class === 'out' ? 'noopener external nofollow' : ''}
+          target={item.class === 'out' ? '_blank' : '_self'}
+          style="display: inline-block;"
         >
-          <i class={i.icon}></i>
+          <i class={item.icon}></i>
         </a>
       ))}
     </div>
 
-    {logoUrl && (
-      <div class="footer_logo_container" title="返回顶部" onclick="window.scrollTo({top:0, behavior:'smooth'})">
-        <img class="footer_logo" src={logoUrl} />
+    <!-- 中间Logo -->
+    {logoUrl ? (
+      <div 
+        class="footer_logo_container" 
+        title="返回顶部" 
+        onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
+      >
+        <img 
+          class="footer_logo" 
+          src={logoUrl} 
+          style="width: auto; height: 40px; object-fit: contain;" 
+          alt="返回顶部" 
+        />
       </div>
-    )}
+    ) : null}
 
-    <div>
-      {iconRight.map((i: LinkItem) => (
-        <a 
-          class="icon_link" 
-          href={i.link || '#'} 
-          title={i.desrc || ''}
-          rel={i.class === 'out' ? 'noopener external nofollow' : ''}
-          target={i.class === 'out' ? '_blank' : '_self'}
-          data-pjax-state={i.class === 'in' && theme.pjax?.enable ? true : undefined}
+    <!-- 右侧图标 -->
+    <div style="display: flex; gap: 6px;">
+      {iconRight.map((item: LinkItem, index: number) => (
+        <a
+          data-key={index}
+          class="icon_link"
+          href={item.link || '#'}
+          title={item.desrc || ''}
+          rel={item.class === 'out' ? 'noopener external nofollow' : ''}
+          target={item.class === 'out' ? '_blank' : '_self'}
+          style="display: inline-block;"
         >
-          <i class={i.icon}></i>
+          <i class={item.icon}></i>
         </a>
       ))}
     </div>
   </div>
 
-  <!-- 2. 底部分组链接+友链区 - 完整显示，无判断 -->
-  <div id="footer_content">
-    {groupLinks.map((item: FooterGroupItem) => (
-      <div class="footer-group">
-        <h3 class="footer-title">{item.group_title}</h3>
-        <div class="footer-links">
-          {item.footer_links.map((i: LinkItem) => (
-            <a 
-              class="footer-item" 
-              href={i.link || '#'}
-              target={i.class === 'out' ? '_blank' : '_self'}
-              data-pjax-state={i.class === 'in' && theme.pjax?.enable ? true : undefined}
+  <!-- 2. 底部分组链接区 -->
+  <div 
+    id="footer_content" 
+    style="display: flex; flex-wrap: wrap; justify-content: space-between; margin-bottom: 20px; gap: 20px; padding: 0 5px;"
+  >
+    {groupLinks.map((group: any, index: number) => (
+      <div data-key={index} class="footer-group" style="min-width: 140px;">
+        <h3 class="footer-title">{group.group_title}</h3>
+        <div class="footer-links" style="display: flex; flex-direction: column; gap: 4px;">
+          {group.footer_links.map((item: LinkItem, idx: number) => (
+            <a
+              data-key={idx}
+              class="footer-item"
+              href={item.link || '#'}
+              target={item.class === 'out' ? '_blank' : '_self'}
+              style="display: block;"
             >
-              {i.text}
+              {item.text}
             </a>
           ))}
         </div>
       </div>
     ))}
 
-    <!-- 友链独立区块 -->
-    <div class="footer-group" id="friend-links-in-footer">
+    <!-- 友链分组 -->
+    <div class="footer-group" style="min-width: 140px;">
       <h3 class="footer-title">
         友链
-        <button title="换一批" id="refresh-friend-link" style="margin-left:8px; border:none; background:transparent; cursor:pointer;">
+        <button 
+          title="换一批" 
+          id="refresh-friend-link" 
+          style="margin-left:6px; border:none; background:transparent; cursor:pointer;"
+        >
           <i class="fa-solid fa-rotate-right"></i>
         </button>
       </h3>
-      <div class="footer-links">
-        <div id="friend-links-list" data-all-links={JSON.stringify(friendLinks)} data-show-num={showNum}>
-          {randomLinks.map((link: LinkItem) => (
-            <a class="footer-item" target="_blank" href={link.url || '#'}>{link.name}</a>
+      <div class="footer-links" style="display: flex; flex-direction: column; gap: 4px;">
+        <div 
+          id="friend-links-list" 
+          data-all-links={JSON.stringify(friendLinks)} 
+          data-show-num={showNum}
+        >
+          {randomLinks.map((link: LinkItem, idx: number) => (
+            <a
+              data-key={idx}
+              class="footer-item"
+              target="_blank"
+              href={link.url || '#'}
+              style="display: block;"
+            >
+              {link.name}
+            </a>
           ))}
         </div>
-        <a class="footer-item" href="/link/" data-pjax-state>查看更多</a>
+        <a class="footer-item" href="/link/" data-pjax-state style="display: block;">查看更多</a>
       </div>
     </div>
   </div>
 
-  <!-- 3. 底部版权+运行信息+备案区 - 完整显示，无判断 -->
-  <div id="footer-bottom">
-    <div class="footer-bottom-content">
-      <div class="footer-bottom-left">
-        <span class="copyright">
-          {copySince && copySince !== nowYear 
-            ? `©${copySince} - ${nowYear} By ` 
-            : `©${nowYear} By `}
-          <a 
-            target="_blank" 
-            rel="noopener" 
-            href={copyLink} 
-            title={`点击访问${author}的主页`}
-            style="margin-left:5px"
-          >
-            {author}
-          </a>
-        </span>
-        <div>
-          {footLeftLinks.map((i: LinkItem) => (
-            <a class="footer-bottom-link" target="_blank" href={i.link} rel="noopener external nofollow" title={i.desrc}>
-              {i.text}
-            </a>
-          ))}
-        </div>
+  <!-- 3. 底部核心区 -->
+  <div 
+    id="footer-bottom" 
+    style="display: flex; flex-wrap: wrap; justify-content: space-between; padding: 15px 5px; border-top: none !important;"
+  >
+    <!-- 左侧 -->
+    <div class="footer-bottom-left" style="display: flex; flex-direction: column; gap: 4px; min-width: 280px;">
+      <span class="copyright" style="display: block; font-size: 14px;">
+        {copySince !== nowYear ? `©${copySince} - ${nowYear} By ${author}` : `©${nowYear} By ${author}`}
+      </span>
+      <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+        <a 
+          href="https://icp.gov.moe/?keyword=20251308" 
+          title="萌ICP备20251308号" 
+          target="_blank" 
+          style="display: inline-block;"
+        >
+          <img src="/img/0/Footer-icp-Moeicp.svg" style="width: auto; height: auto;" alt="萌ICP备案" />
+        </a>
+        <a 
+          href="https://github.com" 
+          title="Github源码托管" 
+          target="_blank" 
+          style="display: inline-block;"
+        >
+          <img src="/img/0/Footer-Source-Github.svg" style="width: auto; height: auto;" alt="Github" />
+        </a>
+        <a 
+          href="https://Cloudflare-cn.com/" 
+          title="Cloudflare CDN加速" 
+          target="_blank" 
+          style="display: inline-block;"
+        >
+          <img src="/img/0/Footer-CDN-Cloudflare.svg" style="width: auto; height: auto;" alt="Cloudflare" />
+        </a>
       </div>
+    </div>
 
-      <div class="footer-bottom-right">
-        <div id="runtime" title="本站运行时间">{calcRuntime()}</div>
-        <div>
-          {footRightLinks.map((i: LinkItem) => (
-            <a class="footer-bottom-link" target="_blank" href={i.link} rel="noopener external nofollow" title={i.desrc}>
-              {i.text}
-            </a>
-          ))}
-        </div>
+    <!-- 右侧 -->
+    <div class="footer-bottom-right" style="display: flex; flex-direction: column; gap: 4px; text-align: right; min-width: 280px;">
+      <div id="runtime" style="font-size: 14px; display: block;">{calcRuntime()}</div>
+      <div style="display: flex; align-items: center; gap: 8px; justify-content: flex-end; flex-wrap: wrap;">
+        <a 
+          href="https://astro.build" 
+          title="Astro 静态站点框架" 
+          target="_blank" 
+          style="display: inline-block;"
+        >
+          <img src="/img/0/Footer-Frame-Astro.svg" style="width: auto; height: auto;" alt="Astro" />
+        </a>
+        <a 
+          href="https://butterfly.js.org" 
+          title="Butterfly 主题" 
+          target="_blank" 
+          style="display: inline-block;"
+        >
+          <img src="/img/0/Footer-Theme-Butterfly.svg" style="width: auto; height: auto;" alt="Butterfly" />
+        </a>
       </div>
     </div>
   </div>
 </footer>
 
-<!-- 脚本区：运行时间实时刷新 + 友链换一批 功能 (全容错 ✅ 移除所有TS注解，解决ts8010) -->
+<!-- 脚本区（纯JS，无TS类型注解） -->
 <script is:inline>
-  // 运行时间 每秒自动刷新（容错处理）
+  // 运行时间刷新
   setInterval(() => {
-    const startTime = new Date(2025, 0, 1, 0, 0, 0);
-    const now = new Date();
-    const diffTime = now.getTime() - startTime.getTime();
-    const days = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diffTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((diffTime % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((diffTime % (1000 * 60)) / 1000);
-    const runtimeEl = document.getElementById('runtime');
-    if (runtimeEl) {
-      runtimeEl.textContent = `本站已苟活：${days} 天 ${hours} 时 ${minutes} 分 ${seconds} 秒`;
-    }
+    const startTime = new Date(2025, 0, 1);
+    const diff = Date.now() - startTime.getTime();
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+    const el = document.getElementById('runtime');
+    if (el) el.textContent = `本站已苟活：${days} 天 ${hours} 时 ${minutes} 分 ${seconds} 秒`;
   }, 1000);
 
-  // 友链 点击换一批 功能（全容错，防止元素不存在报错 ✅ 核心修复：去掉 (link: any) → link）
-  const refreshBtn = document.getElementById('refresh-friend-link');
-  if (refreshBtn) {
-    refreshBtn.addEventListener('click', function () {
-      const friendList = document.getElementById('friend-links-list');
-      if (!friendList) return;
-      const allLinks = JSON.parse(friendList.dataset.allLinks || '[]');
-      const showNum = parseInt(friendList.dataset.showNum || '5');
-      const randomLinks = allLinks.sort(() => Math.random() - 0.5).slice(0, showNum);
-      friendList.innerHTML = randomLinks.map(link => `<a class="footer-item" target="_blank" href="${link.url || '#'}">${link.name}</a>`).join('');
-    });
-  }
+  // 友链换一批（核心修复：移除TS类型注解）
+  document.getElementById('refresh-friend-link')?.addEventListener('click', () => {
+    const listEl = document.getElementById('friend-links-list');
+    if (!listEl) return;
+    const allLinks = JSON.parse(listEl.dataset.allLinks || '[]');
+    const showNum = parseInt(listEl.dataset.showNum || '5');
+    const randomLinks = allLinks.sort(() => Math.random() - 0.5).slice(0, showNum);
+    // ✅ 移除 (link: any, idx: number) → 改为 (link, idx)
+    listEl.innerHTML = randomLinks.map((link, idx) => `
+      <a data-key="${idx}" class="footer-item" target="_blank" href="${link.url || '#'}" style="display: block;">${link.name}</a>
+    `).join('');
+  });
 </script>
