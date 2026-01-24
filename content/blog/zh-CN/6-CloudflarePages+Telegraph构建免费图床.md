@@ -18,243 +18,20 @@ swiper_cover: /img/6/6-0.webp
 
 打开官方仓库，点击star&fock
 
-<style>
-.tip-box-warning {
-  background-color: #fff9e8;
-  border-left: 4px solid #ffb800;
-  padding: 12px 16px;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin: 16px 0;
-}
-
-.tip-icon-warning {
-  width: 20px;
-  height: 20px;
-  background-color: #ffb800;
-  color: #fff;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  font-size: 14px;
-  flex-shrink: 0;
-}
-
-.tip-text-warning {
-  font-size: 14px;
-  color: #595959;
-  line-height: 20px; /* 关键：行高和图标高度完全一致 */
-  margin: 0;
-  padding: 0;
-  display: inline-block;
-}
-</style>
-
-<div class="tip-box-warning">
-  <div class="tip-icon-warning">!</div>
-  <span class="tip-text-warning">使用前请确保已安装最新版本的依赖包</span>
-</div>
-
-
-
-
-
-<style>
-/* 链接卡片 - 背景色调整为更深的灰色 */
-.md-link-card {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px;
-  border-radius: 8px;
-  background: #e6e6e699;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-<style>
-.md-link-card {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px;
-  border-radius: 8px;
-  background: #e6e6e699; 
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.md-link-card:hover {
-  background: #7c7676ce;
-}
-
-.md-link-avatar {
-  width: 40px;
-  height: 10px;
-  border-radius: 6px;
-  background: #e6e6e699; 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.md-link-avatar svg {
-  width: 20px;
-  height: 20px;
-  fill: #6b7280;
-}
-
-/* 文本内容 */
-.md-link-content {
-  flex: 1;
-  min-width: 0;
-}
-
-.md-link-title {
-  font-size: 15px;
-  color: #1f2937;
-  font-weight: 500;
-  margin-bottom: 2px;
-}
-
-.md-link-subtitle {
-  font-size: 12px;
-  color: #6b7280;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-/* 箭头 */
-.md-link-arrow {
-  width: 20px;
-  height: 20px;
-  color: #9ca3af;
-  flex-shrink: 0;
-}
-</style>
-
-<div class="md-link-section">
-  <div class="divider"></div>
-  <div class="md-link-card">
-    <div class="md-link-avatar">
-      <svg viewBox="0 0 24 24">
-        <path d="M607.934444 417.856853c-6.179746-6.1777-12.766768-11.746532-19.554358-16.910135l-0.01228 0.011256c-6.986111-6.719028-16.47216-10.857279-26.930349-10.857279-21.464871 0-38.864146 17.400299-38.864146 38.864146 0 9.497305 3.411703 18.196431 9.071609 24.947182l-0.001023 0c0.001023 0.001023 0.00307 0.00307 0.005117 0.004093 2.718925 3.242857 5.953595 6.03853 9.585309 8.251941 3.664459 3.021823 7.261381 5.997598 10.624988 9.361205l3.203972 3.204995c40.279379 40.229237 28.254507 109.539812-12.024871 149.820214L371.157763 796.383956c-40.278355 40.229237-105.761766 40.229237-146.042167 0l-3.229554-3.231601c-40.281425-40.278355-40.281425-105.809861 0-145.991002l75.93546-75.909877c9.742898-7.733125 15.997346-19.668968 15.997346-33.072233 0-23.312962-18.898419-42.211381-42.211381-42.211381-8.797363 0-16.963347 2.693342-23.725354 7.297197-0.021489-0.045025-0.044002-0.088004-0.066515-0.134053l-0.809435 0.757247c-2.989077 2.148943-5.691629 4.669346-8.025791 7.510044l-78.913281 73.841775c-74.178443 74.229608-74.178443 195.632609 0 269.758863l3.203972 3.202948c74.178443 74.127278 195.529255 74.127278 269.707698 0l171.829484-171.880649c74.076112-74.17435 80.357166-191.184297 6.282077-265.311575L607.934444 417.856853z" />
-        <path d="M855.61957 165.804257l-3.203972-3.203972c-74.17742-74.178443-195.528232-74.178443-269.706675 0L410.87944 334.479911c-74.178443 74.178443-78.263481 181.296089-4.085038 255.522628l3.152806 3.104711c3.368724 3.367701 6.865361 6.54302 10.434653 9.588379 2.583848 2.885723 5.618974 5.355985 8.992815 7.309476 0.025583 0.020466 0.052189 0.041956 0.077771 0.062422l0.011256-0.010233c5.377474 3.092431 11.608386 4.870938 18.257829 4.870938 20.263509 0 36.68962-16.428158 36.68962-36.68962 0-5.719258-1.309832-11.132548-3.645017-15.95846l0 0c-4.850471-10.891048-13.930267-17.521049-20.210297-23.802102l-3.15383-3.102664c-40.278355-40.278355-24.982998-98.79612 15.295358-139.074476l171.930791-171.830507c40.179095-40.280402 105.685018-40.280402 145.965419 0l3.206018 3.152806c40.279379 40.281425 40.279379 105.838513 0 146.06775l-75.686796 75.737962c-10.296507 7.628748-16.97358 19.865443-16.97358 33.662681 0 23.12365 18.745946 41.87062 41.87062 41.87062 8.048303 0 15.563464-2.275833 21.944801-6.211469 0.048095 0.081864 0.093121 0.157589 0.141216 0.240477l1.173732-1.083681c3.616364-2.421142 6.828522-5.393847 9.529027-8.792247l79.766718-73.603345C929.798013 361.334535 929.798013 239.981676 855.61957 165.804257z" />
-    </svg>
+<a href="https://github.com/MarSeventh/CloudFlare-ImgBed" 
+   style="text-decoration: none; display: block; max-width: 400px;">
+  <div style="display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 8px; background: #f5f5f5; cursor: pointer; transition: background 0.2s;">
+    <div style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+      <img src="/img/0/github.avif"  
+           style="width: 100%; height: 100%; object-fit: contain; display: block;">
     </div>
-    <div class="md-link-content">
-    <div class="md-link-title">Github安卓下载链接</div>
-    <div class="md-link-subtitle">maotoumao@MusicFree</div>
+    <div style="flex: 1; min-width: 0;">
+      <div style="font-size: 15px; font-weight: 500; color: #1f2937; margin: 0;">CloudFlare-ImgBed Github仓库</div>
+      <div style="font-size: 12px; color: #6b7280; margin: 2px 0 0 0;">MarSeventh@CloudFlare-ImgBed</div>
+    </div>
+    <div style="width: 20px; height: 20px; color: #9ca3af; flex-shrink: 0;">→</div>
   </div>
-  <div class="md-link-arrow">→</div>
-</div>
-
-
-{% link CloudFlare-ImgBed Github仓库,MarSeventh@CloudFlare-ImgBed,https://github.com/MarSeventh/CloudFlare-ImgBed %}
-
-<style>
-/* 链接卡片 - 背景色调整为更深的灰色 */
-.md-link-card {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px;
-  border-radius: 8px;
-  background: #e6e6e699;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-/* 悬浮效果同步加深 */
-.md-link-card:hover {
-  background: #7c7676ce;
-  /* 悬浮时文字自动变白，提升可读性 */
-  .md-link-title, .md-link-subtitle, .md-link-arrow {
-    color: #ffffff;
-  }
-}
-
-/* 头像 - 改为图片容器 */
-.md-link-avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 12px;
-  background: #e6e6e699;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  /* 保证图片不超出容器 */
-}
-
-/* 自定义头像图片样式 */
-.md-avatar-img {
-  width: 80%;
-  height: 80%;
-  /* 图片自适应容器，不变形 */
-  object-fit: center;
-}
-
-/* 文本内容 */
-.md-link-content {
-  flex: 1;
-  min-width: 0;
-}
-
-.md-link-title {
-  font-size: 15px;
-  color: #1f2937;
-  font-weight: 500;
-  margin-bottom: 2px;
-  /* 悬浮时文字颜色过渡更自然 */
-  transition: color 0.2s;
-}
-
-.md-link-subtitle {
-  font-size: 12px;
-  color: #6b7280;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  transition: color 0.2s;
-}
-
-/* 箭头 */
-.md-link-arrow {
-  width: 20px;
-  height: 20px;
-  color: #9ca3af;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: color 0.2s;
-}
-</style>
-
-<div class="md-link-section">
-  <div class="divider"></div>
-  <div class="md-link-card">
-    <div class="md-link-avatar">
-      <!-- 替换这里的图片链接为你自己的图片地址 -->
-      <img class="md-avatar-img" src="/img/0/link.svg">
-      <!-- 如果图片加载失败，会显示备用文字，也可以留空 -->
-    </div>
-    <div class="md-link-content">
-      <div class="md-link-title">Github安卓下载链接</div>
-      <div class="md-link-subtitle">maotoumao@MusicFree</div>
-    </div>
-    <div class="md-link-arrow">→</div>
-  </div>
-</div>
-
-
+</a>
 
 为避免有小废物不会操作，这里附上图
 
@@ -312,9 +89,10 @@ swiper_cover: /img/6/6-0.webp
     - **KV 命名空间**：选择刚创建的命名空间
 5.点击 "保存"
 
-{% note warning 注意事项 %}
-绑定 KV 时，变量名称必须为 `img_url`
-{% endnote %}
+<div style="background-color: #fff9e8; border-left: 4px solid #ffb800; padding: 12px 16px; border-radius: 4px; display: flex; align-items: center; gap: 8px; margin: 16px 0;">
+  <div style="width: 20px; height: 20px; background-color: #ffb800; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; flex-shrink: 0;">!</div>
+  <span style="font-size: 14px; color: #595959; line-height: 20px; margin: 0; padding: 0; display: inline-block;">绑定 KV 时，变量名称必须为 <code style="background: #f0f0f0; padding: 2px 4px; border-radius: 2px; font-size: 13px;">img_url</code></span>
+</div>
 
 ### D1 数据库配置
 
@@ -473,9 +251,10 @@ VALUES ('main_index', 0, 0, NULL);
     - **D1 数据库**：选择刚创建的数据库
 5.点击 "保存"
 
-{% note warning 注意事项 %}
-绑定 D1 时，变量名称必须为 `img_d1`
-{% endnote %}
+<div style="background-color: #fff9e8; border-left: 4px solid #ffb800; padding: 12px 16px; border-radius: 4px; display: flex; align-items: center; gap: 8px; margin: 16px 0;">
+  <div style="width: 20px; height: 20px; background-color: #ffb800; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; flex-shrink: 0;">!</div>
+  <span style="font-size: 14px; color: #595959; line-height: 20px; margin: 0; padding: 0; display: inline-block;">绑定 D1 时，变量名称必须为 <code style="background: #f0f0f0; padding: 2px 4px; border-radius: 2px; font-size: 13px;">img_d1</code></span>
+</div>
 
 重新部署项目
 
@@ -497,10 +276,13 @@ VALUES ('main_index', 0, 0, NULL);
 - 向 [@VersaToolsBot](https://t.me/VersaToolsBot) 转发这条消息
 - 获得`TG_CHAT_ID`
 
-{% note warning 注意事项 %}
-1.频道 ID 前面有 `-` 号时需要保留
-2.Bot 必须具有频道管理员权限
-{% endnote %}
+<div style="background-color: #fff9e8; border-left: 4px solid #ffb800; padding: 12px 16px; border-radius: 4px; display: flex; align-items: flex-start; gap: 8px; margin: 16px 0;">
+  <div style="width: 20px; height: 20px; background-color: #ffb800; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; flex-shrink: 0; margin-top: 2px;">!</div>
+  <div style="font-size: 14px; color: #595959; line-height: 24px; margin: 0; padding: 0;">
+    1.频道 ID 前面有 <code style="background: #f0f0f0; padding: 2px 4px; border-radius: 2px; font-size: 13px;">-</code> 号时需要保留<br>
+    2.Bot 必须具有频道管理员权限
+  </div>
+</div>
 
 ## 五、Telegraph绑定进Pages
 
@@ -519,6 +301,32 @@ CloudFlare-ImgBed项目为我们提供了一个理想的图床，它还有许多
 
 ### 参考
 
-{% link CloudFlare-ImgBed Github仓库,MarSeventh@CloudFlare-ImgBed,https://github.com/MarSeventh/CloudFlare-ImgBed %}
+<a href="https://github.com/MarSeventh/CloudFlare-ImgBed" 
+   style="text-decoration: none; display: block; max-width: 400px;">
+  <div style="display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 8px; background: #f5f5f5; cursor: pointer; transition: background 0.2s;">
+    <div style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+      <img src="/img/0/github.avif"  
+           style="width: 100%; height: 100%; object-fit: contain; display: block;">
+    </div>
+    <div style="flex: 1; min-width: 0;">
+      <div style="font-size: 15px; font-weight: 500; color: #1f2937; margin: 0;">CloudFlare-ImgBed Github仓库</div>
+      <div style="font-size: 12px; color: #6b7280; margin: 2px 0 0 0;">MarSeventh@CloudFlare-ImgBed</div>
+    </div>
+    <div style="width: 20px; height: 20px; color: #9ca3af; flex-shrink: 0;">→</div>
+  </div>
+</a>
 
-{% link CloudFlare-ImgBed 官方文档,安心存取，轻松分享,https://cfbed.sanyue.de/ %}
+<a href="https://cfbed.sanyue.de/" 
+   style="text-decoration: none; display: block; max-width: 400px;">
+  <div style="display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 8px; background: #f5f5f5; cursor: pointer; transition: background 0.2s;">
+    <div style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+      <img src="/img/0/link.svg"  
+           style="width: 100%; height: 100%; object-fit: contain; display: block;">
+    </div>
+    <div style="flex: 1; min-width: 0;">
+      <div style="font-size: 15px; font-weight: 500; color: #1f2937; margin: 0;">CloudFlare-ImgBed 官方文档</div>
+      <div style="font-size: 12px; color: #6b7280; margin: 2px 0 0 0;">安心存取，轻松分享</div>
+    </div>
+    <div style="width: 20px; height: 20px; color: #9ca3af; flex-shrink: 0;">→</div>
+  </div>
+</a>

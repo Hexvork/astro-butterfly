@@ -36,10 +36,13 @@ font:
   code_font_family: '"JetBrains Mono", monospace'
 ```
 
-{% note warning 注意事项 %}
-1.如遇字体显示异常，请检查 CDN 链接是否有效
-2.首次应用较慢很正常
-{% endnote %}
+<div style="background-color: #fff9e8; border-left: 4px solid #ffb800; padding: 12px 16px; border-radius: 4px; display: flex; align-items: flex-start; gap: 8px; margin: 16px 0;">
+  <div style="width: 20px; height: 20px; background-color: #ffb800; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; flex-shrink: 0; margin-top: 2px;">!</div>
+  <div style="font-size: 14px; color: #595959; line-height: 24px; margin: 0; padding: 0;">
+    1.如遇字体显示异常，请检查 CDN 链接是否有效<br>
+    2.首次应用较慢很正常
+  </div>
+</div>
 
 ## 二、本地应用字体
 
@@ -75,9 +78,11 @@ font:
   code_font_family: '"LXGW WenKai Screen", sans-serif'
 ```
 
-{% note warning 注意事项 %}
-1.如遇字体显示异常，请检查路径是否正确
-2.首次应用较慢很正常
-3.速度应该没CDN快
-~~站长目前还不会本地修改代码字体 JetBrains Mono~~
-{% endnote %}
+<div style="background-color: #fff9e8; border-left: 4px solid #ffb800; padding: 12px 16px; border-radius: 4px; display: flex; align-items: flex-start; gap: 8px; margin: 16px 0;">
+  <div style="width: 20px; height: 20px; background-color: #ffb800; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; flex-shrink: 0; margin-top: 2px;">!</div>
+  <div style="font-size: 14px; color: #595959; line-height: 24px; margin: 0; padding: 0;">
+    1.如遇字体显示异常，请检查路径是否正确<br>
+    2.首次应用较慢很正常<br>
+    <s>3.站长目前还不会本地修改代码字体 JetBrains Mono</s>
+  </div>
+</div>

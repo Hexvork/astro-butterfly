@@ -31,13 +31,16 @@ const configZhCN = {
         ]
     },
     menu: {
-        "归档": "/zh-CN/archives/ || fas fa-archive",
-        "分类": "/zh-CN/categories/ || fas fa-folder-open",
+        "整理||fa fa-graduation-cap": {
+            "时光卷轴": "/zh-CN/archives/ || fas fa-archive",
+            "文章标签": "/zh-CN/tags/ || fas fa-tags", 
+            "文章分类": "/zh-CN/categories/ || fas fa-folder-open"
+        },       
         "友链": "/zh-CN/link/ || fas fa-link",
         "留言板": "/zh-CN/board/ || fas fa-user",
         "语言||fas fa-language": {
             "中文": "/zh-CN/ || fas fa-c",
-            "English": "/en/ || fas fa-e"
+            "English": "/en/ || fas fa-e",
         }
     },
     aside: {

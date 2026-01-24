@@ -14,11 +14,6 @@ banner: /img/4/4-0.avif
 
 在`blog/source/link`中创建文件`index.md`
 
-<div class="note note-info">
-  <div class="note-title">信息提示</div>
-  这是信息类型的 note，包含标题和内容。
-</div>
-
 打开文件，把文件头改成这样
 
 ```markdown

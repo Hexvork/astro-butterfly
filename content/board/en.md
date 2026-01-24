@@ -2,38 +2,27 @@
 title: Message Board
 ---
 
-Currently studying at UNSW
+#### Welcome to leave a message, I will check them regularly ####
+However, before leaving a message, please abide by the following rules:
 
-Research interests include Database Systems (Optimizer, Execution Engine), LLVM Compiler (MLIR & AI-Compiler), and Cybersecurity (Reverse Engineering)
+**1. Respect Others**
 
-Contact Email: bW9jdXNlekBvdXRsb29rLmNvbQ==
+· Please use civilized language and refrain from posting insulting or inappropriate remarks.
+· Avoid using insulting, discriminatory, or aggressive language.
 
-## Research Work
+**2. Abide by Chinese Laws**
 
-[RISC-V Meets RDBMS: An Experimental Study of Database Performance on an Open Instruction Set Architecture](https://www.vldb.org/2025/Workshops/VLDB-Workshops-2025/ADMS/ADMS25-06.pdf)
+· Do not post reactionary remarks.
+· Do not discuss politically sensitive topics.
 
-## Friend Link Application Guide
+**3. No Inappropriate Content**
 
-### My Site Information
+· Such as infringing, pornographic, or obscene content.
 
-Name: Mox's Notes Library
+**4. No Unsolicited Advertising**
 
-Link: [https://mocusez.site](https://mocusez.site/)
+· If you need to promote something, please contact me via email at i@yuyano.com.
 
-Description: Exploring uncharted paths
-
-Avatar URL: https://avatars.githubusercontent.com/u/57286919
-
-### Requirements
-
--  Please add my site link before applying
--  Your site should be >= 1 Month old
--  No NSFW content, otherwise feel free
-
-## Buy me a coffee
-
-Creating content and maintaining servers requires resources 🤓 Thanks for your support! Donation list will be updated periodically (planned at year-end)
-
-SOL: [7BChmVpheXapgnWZDWSTNDZdRkNAbaCbvVvu35ffwcw8](https://solscan.io/account/7BChmVpheXapgnWZDWSTNDZdRkNAbaCbvVvu35ffwcw8)
-
-Tron: [TXLjk7PW8FsSdA8TpoQvf44oKfeNy5P5pp](https://tronscan.org/#/address/TXLjk7PW8FsSdA8TpoQvf44oKfeNy5P5pp)
+Finally, please note:
+    Violations of these norms may result in warnings, temporary suspension of posting rights, or permanent ban.
+    The website administrator reserves the right to adjust and interpret these norms according to specific circumstances.
