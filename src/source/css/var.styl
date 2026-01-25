@@ -14,12 +14,11 @@ $code-background = rgba(27, 31, 35, .05)
 $theme-toc-color = $strong-cyan
 
 // font 核心修改：新增Tomorrow英文字体，保留GuanKiapTsingKhai中文字体、JetBrains Mono代码字体
-$englishFont = 'Tomorrow' // 新增Tomorrow作为英文字体主字体
-$chinseFont = 'GuanKiapTsingKhai' // 中文字体保留GuanKiapTsingKhai
+$chinseFont = 'GuanKiapTsingKhai' 
 // 全局默认字体：优先Tomorrow（英文）+ GuanKiapTsingKhai（中文），保留兜底兼容字体
-$dafault-font-family = $englishFont, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Lato, Roboto, 'PingFang SC', $chinseFont, sans-serif
+$dafault-font-family = 'GuanKiapTsingKhai',-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Lato, Roboto, 'PingFang SC', $chinseFont, sans-serif
 // 代码默认字体：核心为JetBrains Mono，保留Tomorrow作为英文兜底，GuanKiapTsingKhai作为中文兜底
-$dafault-code-font = 'JetBrains Mono', $englishFont, consolas, Menlo, 'PingFang SC', $chinseFont, sans-serif
+$dafault-code-font =  'GuanKiapTsingKhai', consolas, Menlo, 'PingFang SC', sans-serif
 
 // 关键修复：移除hexo-config调用，直接使用修改后的默认字体
 $font-family = $dafault-font-family

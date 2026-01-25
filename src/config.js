@@ -21,24 +21,6 @@ const configZhCN = {
     tag_dir: "tags",
     archive_dir: "archives",
     category_dir: "categories",
-    // ✅ 新增字体配置节点
-    font: {
-        font_family: "GuanKiapTsingKhai, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Lato, Roboto, 'PingFang SC', sans-serif",
-        code_font_family: "JetBrains Mono, consolas, Menlo, 'PingFang SC', GuanKiapTsingKhai, sans-serif"
-    },
-    blog_title_font: {
-        font_family: "GuanKiapTsingKhai"
-    },
-    subtitle: {
-        enable: true,
-        effect: true,
-        typed_option: null,
-        source: false,
-        sub: [
-            "初看前路近可至，细思百事竞待忙",
-            "认知，信条，教导"
-        ]
-    },
     menu: {
         "整理||fa fa-graduation-cap": {
             "时光卷轴": "/zh-CN/archives/ || fas fa-archive",
@@ -107,8 +89,8 @@ const configZhCN = {
                         { text: '博客', link: '/categories/测评/', class: 'out' },
                         { text: '域名', link: '/categories/域名/', class: 'out' },
                         { text: '分享', link: '/categories/分享/', class: 'out' },
-                        { text: '时光卷轴', link: '/posts/', class: 'out' },
-                        { text: '查看全部', link: '/categories/', class: 'out' }
+                        { text: '时光卷轴', link: '/archives/', class: 'out' },
+                        { text: '查看全部', link: '/zh-CN/categories/', class: 'out' }
                     ]
                 },
                 {
@@ -119,7 +101,7 @@ const configZhCN = {
                         { text: 'Blog', link: '/tags/Blog', class: 'out' },
                         { text: 'Hexo', link: '/tags/Hexo', class: 'out' },
                         { text: 'CDN', link: '/tags/CDN', class: 'out' },
-                        { text: '查看全部', link: '/tags/', class: 'out' }
+                        { text: '查看全部', link: '/zh-CN/tags/', class: 'out' }
                     ]
                 },
                 {
@@ -145,72 +127,6 @@ const configZhCN = {
                 ]
             }
         },
-        footer_bottom: {
-            copyright: {
-                enable: true,
-                author: 'Weston Brown',
-                link: 'https://astro.imkn.top/about-me',
-                since: 2025
-            },
-            // ✅ 左侧：原有ICP文字 + 追加2张图片（可继续加）
-            left: [
-                { 
-                    type: "img", // 标记为图片类型
-                    link: "https://icp.gov.moe/?keyword=20251308",
-                    imgUrl: "/img/0/Footer-icp-Moeicp.svg",
-                    alt: "萌ICP备案",
-                    title: "萌ICP备案",
-                    style: "width:60px;height:auto;margin:0 8px;vertical-align:middle;"
-                },
-                { 
-                    type: "img",
-                    link: "https://Github.com",
-                    imgUrl: "/img/0/Footer-Source-Github.svg",
-                    alt: "Github",
-                    title: "Github",
-                    style: "width:60px;height:auto;margin:0 8px;vertical-align:middle;"
-                },
-                { 
-                    type: "img",
-                    link: "https://Cloudflare-cn.com/",
-                    imgUrl: "/img/0/Footer-CDN-Cloudflare.svg",
-                    alt: "Cloudflare",
-                    title: "Cloudflare",
-                    style: "width:50px;height:auto;margin:0 8px;vertical-align:middle;"
-                }
-            ],
-            // ✅ 右侧：新增Vercel图标
-            right: [
-                { 
-                    type: "img",
-                    link: "https://astro.build",
-                    imgUrl: "/img/0/Footer-Frame-Astro.svg",
-                    alt: "Astro",
-                    title: "Astro",
-                    style: "width:50px;height:auto;margin:0 8px;vertical-align:middle;"
-                },
-                { 
-                    type: "img",
-                    link: "https://butterfly.js.org",
-                    imgUrl: "/img/0/Footer-Theme-Butterfly.svg",
-                    alt: "Butterfly",
-                    title: "Butterfly",
-                    style: "width:50px;height:auto;margin:0 8px;vertical-align:middle;"
-                },
-                { 
-                    type: "img",
-                    link: "https://vercel.com",
-                    imgUrl: "/img/0/Footer-Deploy-Vercel.svg",
-                    alt: "Vercel",
-                    title: "Vercel",
-                    style: "width:50px;height:auto;margin:0 8px;vertical-align:middle;"
-                }
-            ],
-            runtime: {
-                enable: true,
-                time: '2025/9/30 12:30:0'
-            }
-        }
     }
 };
 

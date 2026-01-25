@@ -47,8 +47,6 @@ if (!theme.disable_top_img ) {
     headerClassName = isHome ? 'full_page' : isPost ? 'post-bg' : 'not-home-page';
   }
 }
-
-const sub = config.subtitle.sub;
 ---
 
 <header id="page-header" class={`${headerClassName}${isFixedClass}`} style={bg_img}>
@@ -61,17 +59,6 @@ const sub = config.subtitle.sub;
             <h1 id="site-title">{config.title}</h1>
             {theme.subtitle.enable && (
               <>
-                {/* ✅ 修复点3【关键】：手动添加 is:inline 指令 → 彻底解决 astro4000 警告 */}
-                <script is:inline type="module" define:vars={{ sub }}>
-                  import "/js/typed.umd.js";
-                  new Typed("#subtitle", {
-                      strings: sub,
-                      startDelay: 300,
-                      typeSpeed: 150,
-                      loop: true,
-                      backSpeed: 50,
-                    });
-                </script>
                 <div id="site-subtitle">
                   <span id="subtitle"></span>
                 </div>
