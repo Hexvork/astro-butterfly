@@ -168,13 +168,16 @@ const configEn = {
         ]
     },
     menu: {
-        "Archives": "/en/archives/ || fas fa-archive",
-        "Categories": "/en/categories/ || fas fa-folder-open",
-        "Friends & Personal Collection": "/en/link/ || fas fa-link",
+        "Posts||fa fa-graduation-cap": {
+            "Archives": "/en/archives/ || fas fa-archive",
+            "Tags": "/en/tags/ || fas fa-tags", 
+            "Categories": "/en/categories/ || fas fa-folder-open"
+        },       
+        "Link": "/en/link/ || fas fa-link",
         "Board": "/en/board/ || fas fa-user",
-        "Language||fas fa-language": {
+        "Languages||fas fa-language": {
             "中文": "/zh-CN/ || fas fa-c",
-            "English": "/en/ || fas fa-e"
+            "English": "/en/ || fas fa-e",
         }
     },
     aside: {
@@ -221,10 +224,9 @@ const configEn = {
                 {
                     group_title: 'Article Organization',
                     footer_links: [
-                        { text: 'Blog', link: '/categories/测评/', class: 'out' },
-                        { text: 'Domain', link: '/categories/域名/', class: 'out' },
-                        { text: 'Sharing', link: '/categories/分享/', class: 'out' },
-                        { text: 'Time Scroll', link: '/posts/', class: 'out' }
+                        { text: 'Guide', link: '/en/categories/Gomain/', class: 'out' },
+                        { text: 'Share', link: '/en/categories/Share/', class: 'out' },
+                        { text: 'All', link: '/en/archives/', class: 'out' }
                     ]
                 }
             ],
@@ -240,72 +242,6 @@ const configEn = {
                 ]
             }
         },
-        footer_bottom: {
-            copyright: {
-                enable: true,
-                author: 'Weston Brown',
-                link: 'https://astro.imkn.top/about-me',
-                since: 2025
-            },
-            // ✅ 英文左侧：原有文字 + 按需加图片（示例加1张）
-            left: [
-                { 
-                    type: "img", // 标记为图片类型
-                    link: "https://icp.gov.moe/?keyword=20251308",
-                    imgUrl: "/img/0/Footer-icp-Moeicp.svg",
-                    alt: "萌ICP备案",
-                    title: "萌ICP备案",
-                    style: "width:60px;height:auto;margin:0 8px;vertical-align:middle;"
-                },
-                { 
-                    type: "img",
-                    link: "https://Github.com",
-                    imgUrl: "/img/0/Footer-Source-Github.svg",
-                    alt: "Github",
-                    title: "Github",
-                    style: "width:60px;height:auto;margin:0 8px;vertical-align:middle;"
-                },
-                { 
-                    type: "img",
-                    link: "https://Cloudflare-cn.com/",
-                    imgUrl: "/img/0/Footer-CDN-Cloudflare.svg",
-                    alt: "Cloudflare",
-                    title: "Cloudflare",
-                    style: "width:50px;height:auto;margin:0 8px;vertical-align:middle;"
-                }
-            ],
-            // ✅ 英文右侧：同步新增Vercel图标
-            right: [
-                { 
-                    type: "img",
-                    link: "https://astro.build",
-                    imgUrl: "/img/0/Footer-Frame-Astro.svg",
-                    alt: "Astro",
-                    title: "Astro",
-                    style: "width:50px;height:auto;margin:0 8px;vertical-align:middle;"
-                },
-                { 
-                    type: "img",
-                    link: "https://butterfly.js.org",
-                    imgUrl: "/img/0/Footer-Theme-Butterfly.svg",
-                    alt: "Butterfly",
-                    title: "Butterfly",
-                    style: "width:50px;height:auto;margin:0 8px;vertical-align:middle;"
-                },
-                { 
-                    type: "img",
-                    link: "https://vercel.com",
-                    imgUrl: "/img/0/Footer-Deploy-Vercel.svg",
-                    alt: "Vercel",
-                    title: "Vercel",
-                    style: "width:50px;height:auto;margin:0 8px;vertical-align:middle;"
-                }
-            ],
-            runtime: {
-                enable: true,
-                time: '2025/9/30 12:30:0'
-            }
-        }
     }
 };
 

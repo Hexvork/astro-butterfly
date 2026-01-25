@@ -46,7 +46,20 @@ font:
 
 ## 二、本地应用字体
 
-{% link LXGW WenKai(霞鹜文楷)Github仓库,github,https://github.com/lxgw/LxgwWenKai %}
+<a href="https://github.com/lxgw/LxgwWenKai" 
+   style="text-decoration: none; display: block; max-width: 400px;">
+  <div style="display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 8px; background: #f5f5f5; cursor: pointer; transition: background 0.2s;">
+    <div style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+      <img src="/img/0/github.avif"  
+           style="width: 100%; height: 100%; object-fit: contain; display: block;">
+    </div>
+    <div style="flex: 1; min-width: 0;">
+      <div style="font-size: 15px; font-weight: 500; color: #1f2937; margin: 0;">LXGW WenKai(霞鹜文楷)Github仓库</div>
+      <div style="font-size: 12px; color: #6b7280; margin: 2px 0 0 0;">lxgw@LxgwWenKai</div>
+    </div>
+    <div style="width: 20px; height: 20px; color: #9ca3af; flex-shrink: 0;">→</div>
+  </div>
+</a>
 
 1.下载LXGWWenKai-Regular.ttf，放到 themes\butterfly\source\fonts
 
