@@ -1,9 +1,9 @@
 ---
-// import { getBgPath } from '../utils'; // 假设 getBgPath 是一个导入的实用函数
-import { theme } from '../theme'; // 假设 theme 是一个导入的主题配置
+// import { getBgPath } from '../utils'; 
+import { theme } from '../theme'; 
 import { is_post } from '@src/utils';
 const isPost = is_post(Astro.url);
-// import { is_archive, is_category, is_tag, is_post } from '../helpers'; // 假设这些是导入的辅助函数
+// import { is_archive, is_category, is_tag, is_post } from '../helpers'; 
 import Head from './head.astro';
 import HeaderIndex from './header/index.astro';
 import Footer from './footer.astro';
@@ -32,7 +32,6 @@ const { lang, page, postHeadings } = Astro.props;
     <LoadingIndex />
     <!-- {partial('includes/loading/index', {}, { cache: true })} -->
 
-    <!-- 背景图设置：/img/0/top.avif -->
     <div id="web_bg" style="
       position: fixed;
       top: 0;

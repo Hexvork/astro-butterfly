@@ -9,7 +9,7 @@ export const theme = {
     },
     display_mode: 'light',
     avatar: {
-        img: "../pubile/img/0/favicon.avif",
+        img: "/img/0/favicon.avif",
         effect: false
     },
     error_img: {
@@ -125,7 +125,7 @@ export const theme = {
       "label": true
     }
   },
-  default_top_img: "https://ak.hypergryph.com/upload/images/20190228/b18b912d69fa0b3d571054c8f5fda5cf.jpg",
+  default_top_img: "/img/0/top-dark.avif",
   lazyload: {
     enable: true,
     field: 'site',
@@ -145,10 +145,4 @@ export const theme = {
     hide: null,
     show: null
   },
-  "waline": {
-    "serverURL": "",
-    "bg": "mysql",
-    "pageview": false,
-    "option": null
-  }
 };
