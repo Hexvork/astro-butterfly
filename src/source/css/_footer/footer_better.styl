@@ -162,23 +162,15 @@
         transition color 0.3s ease
         color var(--font-color)
 
-        &:not(:first-child)::before
-            content '|'
-            font-size 14px
-            line-height 2.45
-            margin 0 10px
-
-        @media screen and (max-width:970px)
-            &:not(:first-child)::before
-                line-height 2.25
-                margin 0 8px
+        // ########### 已删除竖线|的核心样式 ###########
+        // 移除了&:not(:first-child)::before的content和所有相关样式
+        // 移除了移动端的&:not(:first-child)::before适配样式
+        // ###########################################
 
         &:hover
             color var(--better-footer-hover)
-
-            &::before
-                color var(--font-color)
-                text-decoration: none
+            // 同时删除伪元素的hover样式（因为伪元素已经删掉了）
+            text-decoration: none
 
     .footer-bottom-content
         display flex

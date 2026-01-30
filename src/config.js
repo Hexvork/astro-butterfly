@@ -1,13 +1,9 @@
-// src/config.js 【完整覆盖版】✅ footer_bottom left/right 分别显示多张图片+超链接
-// 保留所有原有配置：background/bgImgUrl/菜单/友链/版权/运行时间等
-// ✅ 核心改动：left/right 数组追加图片HTML，图文混合，左右侧独立配置多张图
-// ✅ 新增字体配置：全局字体GuanKiapTsingKhai，代码字体JetBrains Mono
 const configZhCN = {
     title: "Weston Blog",
     description: "探索未曾设想的道路",
     keywords: "Working",
     author: "Weston Brown",
-    background: "../public/img/0/top.avif",
+    background: "/img/0/top.avif",
     copy: {
         enable: true,
         copyright: {
@@ -24,10 +20,10 @@ const configZhCN = {
     menu: {
         "整理||fa fa-graduation-cap": {
             "时光卷轴": "/zh-CN/archives/ || fas fa-archive",
-            "文章标签": "/zh-CN/tags/ || fas fa-tags", 
+            "文章标签": "/zh-CN/tags/ || fas fa-tags",
             "文章分类": "/zh-CN/categories/ || fas fa-folder-open"
-        },       
-        "友链": "/zh-CN/link/ || fas fa-link",
+        },
+        "友链": "/zh-CN/links/ || fas fa-link",
         "留言板": "/zh-CN/board/ || fas fa-user",
         "语言||fas fa-language": {
             "中文": "/zh-CN/ || fas fa-c",
@@ -74,7 +70,7 @@ const configZhCN = {
             right: [
                 {
                     icon: 'fa-solid fa-comment',
-                    link: '/comment/',
+                    link: '/zh-CN/board/',
                     desrc: '留言板',
                     class: 'out'
                 }
@@ -86,28 +82,26 @@ const configZhCN = {
                 {
                     group_title: '文章整理',
                     footer_links: [
-                        { text: '博客', link: '/categories/测评/', class: 'out' },
-                        { text: '域名', link: '/categories/域名/', class: 'out' },
-                        { text: '分享', link: '/categories/分享/', class: 'out' },
-                        { text: '时光卷轴', link: '/archives/', class: 'out' },
+                        { text: '教程', link: '/zh-CN/categories/教程/', class: 'out' },
+                        { text: '分享', link: '/zh-CN/categories/分享/', class: 'out' },
+                        { text: '时光卷轴', link: '/zh-CN/archives/', class: 'out' },
                         { text: '查看全部', link: '/zh-CN/categories/', class: 'out' }
                     ]
                 },
                 {
-                    group_title: '文章标签',
-                    footer_links: [
-                        { text: '0基础', link: '/tags/0基础', class: 'out' },
-                        { text: '0成本', link: '/tags/0成本', class: 'out' },
-                        { text: 'Blog', link: '/tags/Blog', class: 'out' },
-                        { text: 'Hexo', link: '/tags/Hexo', class: 'out' },
-                        { text: 'CDN', link: '/tags/CDN', class: 'out' },
+                    group_title: '标签', 
+                    footer_links: [ 
+                        { text: 'Hexo', link: '/zh-CN/tags/Hexo', class: 'out' },
+                        { text: 'CDN', link: '/zh-CN/tags/CDN', class: 'out' },
+                        { text: 'Blog', link: '/zh-CN/tags/Blog', class: 'out' },
                         { text: '查看全部', link: '/zh-CN/tags/', class: 'out' }
                     ]
                 },
                 {
-                    group_title: '自建工具',
-                    footer_links: [
-                        { text: '背诵辅助机', link: 'https://github.com/BOOMDEE/Recitation-Tutoring-Robot', class: 'out' }
+                    group_title: '项目',
+                    footer_links: [ 
+                        { text: '背诵辅助机', link: 'https://github.com/BOOMDEE/Recitation-Tutoring-Robot', class: 'out' },
+                        { text: 'Astro-Butterfly', link:'https://github.com/Weston-Brown/Astro-Butterfly', class: 'out' }
                     ]
                 }
             ],
@@ -126,7 +120,25 @@ const configZhCN = {
                     { name: '安知鱼', url: 'https://blog.anheyu.com/' }
                 ]
             }
-        },
+        }
+    },
+    footer_text: {
+        friend_link_title: '友链',
+        refresh_link_btn: '换一批',
+        view_more_links: '查看更多',
+        runtime_prefix: '本站已苟活：',
+        back_to_top: '返回顶部',
+        icp_title: '萌ICP备20251308号',
+        github_source_title: 'Github源码托管',
+        cloudflare_cdn_title: 'Cloudflare CDN加速',
+        astro_frame_title: 'Astro 静态站点框架',
+        butterfly_theme_title: 'Butterfly 主题',
+        tags_title: '标签',
+        projects_title: '项目',
+        time_units: { days: '天', hours: '时', minutes: '分', seconds: '秒' }
+    },
+    error_img: {
+        flink: '/img/0/error-flink.svg'
     }
 };
 
@@ -149,10 +161,8 @@ const configEn = {
     tag_dir: "tags",
     archive_dir: "archives",
     category_dir: "categories",
-    // ✅ 新增字体配置节点（英文端同步）
     font: {
-        font_family: "GuanKiapTsingKhai, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Lato, Roboto, sans-serif",
-        code_font_family: "JetBrains Mono, consolas, Menlo, sans-serif"
+        font_family: "GuanKiapTsingKhai, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Lato, Roboto, sans-serif"
     },
     blog_title_font: {
         font_family: "GuanKiapTsingKhai"
@@ -170,13 +180,13 @@ const configEn = {
     menu: {
         "Posts||fa fa-graduation-cap": {
             "Archives": "/en/archives/ || fas fa-archive",
-            "Tags": "/en/tags/ || fas fa-tags", 
+            "Tags": "/en/tags/ || fas fa-tags",
             "Categories": "/en/categories/ || fas fa-folder-open"
-        },       
-        "Link": "/en/link/ || fas fa-link",
+        },
+        "Links": "/en/links/ || fas fa-link",
         "Board": "/en/board/ || fas fa-user",
-        "Languages||fas fa-language": {
-            "中文": "/zh-CN/ || fas fa-c",
+        "Language||fas fa-language": {
+            "Chinese": "/zh-CN/ || fas fa-c",
             "English": "/en/ || fas fa-e",
         }
     },
@@ -209,7 +219,7 @@ const configEn = {
                 {
                     icon: 'fa-solid fa-envelope',
                     link: 'mailto:i@yuyano.com',
-                    desrc: 'Send an email to admin',
+                    desrc: 'Send an email to the administrator',
                     class: 'out'
                 }
             ],
@@ -224,30 +234,68 @@ const configEn = {
                 {
                     group_title: 'Article Organization',
                     footer_links: [
-                        { text: 'Guide', link: '/en/categories/Gomain/', class: 'out' },
-                        { text: 'Share', link: '/en/categories/Share/', class: 'out' },
+                        { text: 'Tutorial', link: '/en/categories/Tutorial/', class: 'out' },
+                        { text: 'Review', link: '/en/categories/Review/', class: 'out' },
                         { text: 'All', link: '/en/archives/', class: 'out' }
+                    ]
+                },
+                {
+                    group_title: 'Tags', 
+                    footer_links: [ 
+                        { text: 'Blog', link: '/en/tags/Blog', class: 'out' },
+                        { text: 'Hexo', link: '/en/tags/Hexo/', class: 'out' },
+                        { text: 'CDN', link: '/en/tags/CDN/', class: 'out' },
+                        { text: 'View All', link: '/en/tags/', class: 'out' }
+                    ]
+                },
+                {
+                    group_title: 'Projects', 
+                    footer_links: [ 
+                        { text: 'Recitation Assistant', link: 'https://github.com/BOOMDEE/Recitation-Tutoring-Robot', class: 'out' },
+                        { text: 'Astro-Butterfly', link:'https://github.com/Weston-Brown/Astro-Butterfly', class: 'out' }
                     ]
                 }
             ],
+
             footer_friend_links: {
                 enable: true,
                 number: 5,
                 links: [
-                    { name: 'echo\'s Useless Blog', url: 'https://blog.cnm250.cn/' },
+                    { name: 'echo\'s Blog', url: 'https://blog.cnm250.cn/' },
                     { name: 'Yeqing Blog', url: 'https://blog.yeqing.net/' },
-                    { name: 'Free Blog', url: 'https://blog.free2011.top' },
+                    { name: 'FreeBoy\'s Blog', url: 'https://blog.free2011.top' },
                     { name: 'AcoFork Blog', url: 'https://blog.2b2x.cn/' },
-                    { name: 'IFREAD\'s Site', url: 'https://blogs.lijnf.top/' }
+                    { name: 'IFREAD\'s Site', url: 'https://blogs.lijnf.top/' },
+                    { name: 'Axinkai', url: 'https://axinkai.cn/' },
+                    { name: 'Zhheo', url: 'https://blog.zhheo.com/' },
+                    { name: 'Starsharbor', url: 'https://blog.starsharbor.com/' },
+                    { name: 'Anheyu', url: 'https://blog.anheyu.com/' }
                 ]
             }
-        },
+        }
+    },
+    footer_text: {
+        friend_link_title: 'Friend Links',
+        refresh_link_btn: 'Refresh',
+        view_more_links: 'View More',
+        runtime_prefix: 'Site Runtime：',
+        back_to_top: 'Back to Top',
+        icp_title: 'Moe ICP Filing 20251308',
+        github_source_title: 'Github Source Hosting',
+        cloudflare_cdn_title: 'Cloudflare CDN Acceleration',
+        astro_frame_title: 'Astro Static Site Framework',
+        butterfly_theme_title: 'Butterfly Theme',
+        tags_title: 'Tags',
+        projects_title: 'Projects',
+        time_units: { days: 'days', hours: 'h', minutes: 'min', seconds: 's' }
+    },
+    error_img: {
+        flink: '/img/0/error-flink.svg' 
     }
 };
 
-// 保留所有原有导出，无需修改
 export function getConfig(lang = 'zh-CN') {
-    return lang === 'zh-CN' ? configZhCN : configEn;
+    return lang === 'en' ? configEn : configZhCN;
 }
 
 export const background = "../public/img/0/top.avif";

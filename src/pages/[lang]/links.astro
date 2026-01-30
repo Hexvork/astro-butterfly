@@ -1,0 +1,60 @@
+---
+import { theme } from '@src/theme';
+// 导入重命名后的links.json
+import linksConfig from '@content/links.json';
+import Layout from '@src/layout/layout.astro';
+
+// 获取路由语言参数（en/zh-CN），适配/zh-CN/links/和/en/links/
+const { lang } = Astro.params;
+// 读取对应语言配置，容错：默认使用中文配置
+const currentConfig = linksConfig[lang] || linksConfig['zh-CN'];
+// 页面标题中英文自动适配
+const pageTitle = lang === 'en' ? 'Friend Links & Personal Collection' : '友链&私人收藏';
+
+let pageContent = '';
+if (currentConfig) {
+  let result = "";
+  // 原有渲染逻辑完全保留，仅数据源替换为当前语言配置
+  const className = currentConfig.class_name ? `<h2>${currentConfig.class_name}</h2>` : "";
+  const classDesc = currentConfig.class_desc ? `<div class="flink-desc">${currentConfig.class_desc}</div>` : "";
+
+  let listResult = "";
+  currentConfig.link_list.forEach((j) => {
+    listResult += `
+      <div class="flink-list-item">
+        <a href="${j.link}" title="${j.name}" target="_blank">
+          <div class="flink-item-icon">
+            <img class="no-lightbox" src="${j.avatar}" onError="this.onerror=null;this.src='${theme.error_img.flink}'" alt="${j.name}" />
+          </div>
+          <div class="flink-item-name">${j.name}</div>
+          <div class="flink-item-desc" title="${j.descr}">${j.descr}</div>
+        </a>
+      </div>`;
+  });
+
+  result += `${className}${classDesc} <div class="flink-list">${listResult}</div>`;
+  pageContent = result + pageContent;
+}
+
+// 页面配置，标题已做中英文适配
+const page = {
+  "title": pageTitle,
+  "type": "link",
+  "comments": false
+}
+
+// 生成静态路径，对应/en/links/和/zh-CN/links/路由
+export function getStaticPaths () {
+ return [
+    {params: {lang: 'en'}},
+    {params: {lang: 'zh-CN'}},
+  ];
+}
+---
+<Layout lang={lang} page={page}>
+    <div id="page" class={''}>
+        <div id="article-container">
+            <div class="flink" set:html={pageContent}/>
+          </div>
+    </div>
+</Layout>
