@@ -4,7 +4,7 @@ export const theme = {
             enable: true,
             since: 2025,
         },
-        custom_text: 'Test', 
+        custom_text: 'Test', // 你原有文本，完全不动
         copyright: true,
     },
     display_mode: 'light',
@@ -31,11 +31,6 @@ export const theme = {
     "social": {
         "fab fa-github": "https://github.com/Weston-Brown || Github || '#24292e'",
         "fas fa-rss": "/atom.xml || RSS"
-    },
-    "nav": {
-        "logo": null,
-        "display_title": true,
-        "fixed": false
     },
     "preloader": {
         "enable": false,
@@ -66,7 +61,7 @@ export const theme = {
         },
         "card_announcement": {
           "enable": true,
-          "content": "开放友链添加，欢迎互换"
+          "content": "开放友链添加，欢迎互换" // 你原有公告，完全不动
         },
         "card_recent_post": {
           "enable": true,
