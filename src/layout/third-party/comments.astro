@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const artalkInstance = Artalk.init({
     el: '#artalk-container',
-    server: 'https://artalk.yuyano.com',         // 本地代理（线上改 https://artalk.yuyano.com）
+    server: '/artalk-api',         // 本地代理（线上改 https://artalk.yuyano.com）
     site: 'Weston-Blog',           // 与Artalk后台站点标识一致
     locale: artalkLocale,          // 最终生效的多语言配置
     pageKey: pathname,             // 路由隔离不同文章评论
