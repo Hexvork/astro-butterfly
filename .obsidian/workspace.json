@@ -29,14 +29,28 @@
               "state": {
                 "file": "content/blog/zh-CN/8-CloudflarePages优选指南【20260125亲测有效】.md",
                 "mode": "source",
-                "source": false
+                "source": true
               },
               "icon": "lucide-file",
               "title": "8-CloudflarePages优选指南【20260125亲测有效】"
             }
+          },
+          {
+            "id": "d48f43261345e946",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "content/blog/zh-CN/1-Hexo静态博客搭建教程.md",
+                "mode": "source",
+                "source": true
+              },
+              "icon": "lucide-file",
+              "title": "1-Hexo静态博客搭建教程"
+            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -189,7 +203,7 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "bases:新建数据库": false,
+      "bases:创建新数据库": false,
       "switcher:打开快速切换": false,
       "graph:查看关系图谱": false,
       "canvas:新建白板": false,
@@ -198,7 +212,7 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "fce70f38fe1d10a0",
+  "active": "d48f43261345e946",
   "lastOpenFiles": [
     "public/img/8/8-0.avif",
     "public/img/8/8-0 - 副本.png",

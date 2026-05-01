@@ -301,3 +301,15 @@ export function getConfig(lang = 'zh-CN') {
 export const background = "../public/img/0/top.avif";
 export const bgImgUrl = "./top.avif";
 export { configZhCN, configEn };
+
+ export const commentConfig = {
+
+  artalk: {
+
+    server: 'https://artalk.yuyano.com/', // 你的反代
+
+    site: 'Weston-Blog',                    // 后端里配置的站点名
+
+  },
+
+ }

@@ -1,5 +1,21 @@
 ---
 import { theme } from '@src/theme';
+const serverURL = theme.artalk.serverURL
+const commentsScriptContent = `
+<script type="module">
+  import { init } from 'https://artalk.yuyano.com/dist/Artalk.js';
+  (() => {
+      init({
+        el: '#artalk-wrap',
+        serverURL: "${serverURL}",
+        pageview: true,
+        dark: 'html[data-theme="dark"]',
+        path: window.location.pathname,
+        comment: true,
+      });
+  })();
+</script>
+`;
 ---
 
 <div>
@@ -24,11 +40,13 @@ import { theme } from '@src/theme';
                 $nav.classList.toggle('hide-menu', hideMenuIndex)
             }
 
+            // 初始化header
             const initAdjust = () => {
                 adjustMenu(true)
                 $nav.classList.add('show')
             }
 
+            // sidebar menus
             const sidebarFn = {
                 open: () => {
                     btf.overflowPaddingR.add()
@@ -48,6 +66,9 @@ import { theme } from '@src/theme';
                 const toggleMenu = document.getElementById('toggle-menu')
                 if (!toggleMenu) return
                 btf.addEventListenerPjax(toggleMenu, 'click', () => { sidebarFn.open() })
+                // toggleMenu.addEventListener('click', () => {
+                //     sidebarFn.open();
+                // });
             }
 
             
@@ -72,29 +93,29 @@ import { theme } from '@src/theme';
         })
     </script>
 
-  {theme.translate?.enable && (
-    <script src={theme.asset?.translate}></script>
+  <!-- {theme.translate.enable && (
+    <script src={url_for(theme.asset.translate)}></script>
+  )} -->
+
+  <!-- {theme.lightbox && (
+    <script src={url_for(theme.asset[theme.lightbox])}></script>
+  )} -->
+
+  <!-- {theme.instantpage && (
+    <script src={url_for(theme.asset.instantpage)} type="module"></script>
+  )} -->
+
+  <!-- {theme.lazyload.enable && (
+    <script src={url_for(theme.asset.lazyload)}></script>
   )}
 
-  {theme.lightbox && (
-    <script src={theme.asset?.[theme.lightbox]}></script>
+  {theme.snackbar.enable && (
+    <script src={url_for(theme.asset.snackbar)}></script>
   )}
 
-  {theme.instantpage && (
-    <script src={theme.asset?.instantpage} type="module"></script>
-  )}
-
-  {theme.lazyload?.enable && (
-    <script src={theme.asset?.lazyload}></script>
-  )}
-
-  {theme.snackbar?.enable && (
-    <script src={theme.asset?.snackbar}></script>
-  )}
-
-  {theme.pangu?.enable && (
+  {theme.pangu.enable && (
     <include src="../includes/third-party/pangu.astro" />
-  )}
+  )} -->
 
   <div class="js-pjax">
     <!-- {needLoadCountJs && (
@@ -103,36 +124,43 @@ import { theme } from '@src/theme';
 
     <!-- <include src="./third-party/math/index.astro" />
     <include src="./third-party/abcjs/index.astro" /> -->
+
+    <!-- {commentsJsLoad && (
+      <include src="./third-party/comments/js.astro" />
+    )} -->
   </div>
 
-  <!-- {theme.aside?.enable && theme.aside?.card_newest_comments?.enable && (
-    (theme.pjax?.enable || (!is_post() && page.aside !== false)) && (
+  <!-- <include src="../includes/third-party/prismjs.astro" /> -->
+
+  <!-- {theme.aside.enable && theme.aside.card_newest_comments.enable && (
+    (theme.pjax.enable || (!is_post() && page.aside !== false)) && (
       <include src="../includes/third-party/newest-comments/index.astro" />
     )
   )} -->
 
-  <!-- {injectHtml(theme.inject?.bottom)} -->
+  <!-- {injectHtml(theme.inject.bottom)} -->
 
   <!-- <include src="../includes/third-party/effect.astro" />
   <include src="../includes/third-party/chat/index.astro" />
 
-  {theme.aplayerInject?.enable && (
-    (theme.pjax?.enable || theme.aplayerInject?.per_page || page.aplayer) && (
+  {theme.aplayerInject && theme.aplayerInject.enable && (
+    (theme.pjax.enable || theme.aplayerInject.per_page || page.aplayer) && (
       <include src="./third-party/aplayer.astro" />
     )
   )} -->
 
-  <!-- {theme.pjax?.enable && (
+  <!-- {theme.pjax.enable && (
     <include src="../includes/third-party/pjax.astro" />
   )} -->
 <!-- 
-  {theme.umami_analytics?.enable && (
+  {theme.umami_analytics.enable && (
     <include src="../includes/third-party/umami_analytics.astro" />
   )}
 
-  {(theme.busuanzi?.site_uv || theme.busuanzi?.site_pv || theme.busuanzi?.page_pv) && (
-    <script async data-pjax src={theme.asset?.busuanzi || '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'}></script>
+  {(theme.busuanzi.site_uv || theme.busuanzi.site_pv || theme.busuanzi.page_pv) && (
+    <script async data-pjax src={theme.asset.busuanzi || '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'}></script>
   )}
 
   <include src="../includes/third-party/search/index.astro" /> -->
 </div>
+<div set:html={commentsScriptContent}></div>

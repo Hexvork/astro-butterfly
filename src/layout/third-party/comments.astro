@@ -2,6 +2,10 @@
 const { lang } = Astro.props;
 import { useTranslations } from '@src/utils';
 const t = useTranslations(lang);
+
+// const commentComponents = {
+//   Waline: () => <div id="waline-wrap" />,
+// };
 ---
 
 <hr class="custom-hr" />
@@ -14,30 +18,12 @@ const t = useTranslations(lang);
   </div>
 
   <div class="comment-wrap">
-    <div id="artalk-container" style="width: 100%;"></div>
+    <!-- {theme.comments.use.map((name) => (
+      <div>
+        {commentComponents[name] && commentComponents[name]()}
+      </div>
+    ))} -->
+    <!-- {commentComponents["Waline"]} -->
+    <div id="waline-wrap" />
   </div>
 </div>
-
-<link rel="stylesheet" href="https://cdn.jsdmirror.com/npm/artalk@2.9.1/dist/Artalk.min.css" />
-<script src="https://cdn.jsdmirror.com/npm/artalk@2.9.1/dist/Artalk.min.js"></script>
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const pathname = window.location.pathname;
-  const artalkLocale = '${lang}' === 'en' ? 'en-US' : 'zh-CN';
-
-  const artalkInstance = Artalk.init({
-    el: '#artalk-container',
-    server: '/artalk-api',         // 本地代理（线上改 https://artalk.yuyano.com）
-    site: 'Weston-Blog',           // 与Artalk后台站点标识一致
-    locale: artalkLocale,          // 最终生效的多语言配置
-    pageKey: pathname,             // 路由隔离不同文章评论
-    pageTitle: document.title,
-    placeholder: artalkLocale === 'zh-CN' ? '写下你的评论吧～' : 'Write your comment...'
-  });
-
-  if (window.btf) {
-    btf.addGlobalFn('pjaxComplete', () => artalkInstance.reload(), 'artalkReload');
-  }
-});
-</script>

@@ -2,14 +2,14 @@ export const theme = {
     footer:{
         owner: {
             enable: true,
-            since: 2025,
+            since: 2019,
         },
-        custom_text: 'Test', // 你原有文本，完全不动
+        custom_text: 'Test', 
         copyright: true,
     },
     display_mode: 'light',
     avatar: {
-        img: "/img/0/favicon.avif",
+        img: "/img/head.jpg",
         effect: false
     },
     error_img: {
@@ -23,14 +23,19 @@ export const theme = {
         "fixed": false
     },
     "subtitle": {
-        "enable": false,
-        "effect": false,
+        "enable": true,
+        "effect": true,
         "typed_option": null,
         "source": false,
     },
     "social": {
-        "fab fa-github": "https://github.com/Weston-Brown || Github || '#24292e'",
+        "fab fa-github": "https://github.com/mocusez || Github || '#24292e'",
         "fas fa-rss": "/atom.xml || RSS"
+    },
+    "nav": {
+        "logo": null,
+        "display_title": true,
+        "fixed": false
     },
     "preloader": {
         "enable": false,
@@ -56,12 +61,12 @@ export const theme = {
             "enable": false,
             "icon": "fab fa-github",
             "text": "Follow Me",
-            "link": "https://github.com/Weston-Brown"
+            "link": "https://github.com/mocusez"
           }
         },
         "card_announcement": {
           "enable": true,
-          "content": "开放友链添加，欢迎互换" // 你原有公告，完全不动
+          "content": "开放友链添加，欢迎互换"
         },
         "card_recent_post": {
           "enable": true,
@@ -140,4 +145,10 @@ export const theme = {
     hide: null,
     show: null
   },
+  "artalk": {
+    "serverURL": "https://artalk.yuyano.com/",
+    "pageview": true,
+    "option": false,
+    "site": "Weston-Blog"
+  }
 };

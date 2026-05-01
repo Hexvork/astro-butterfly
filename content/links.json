@@ -3,120 +3,12 @@
     "class_name": "友情链接",
     "class_desc": "这里的每个站点，都耐人寻味……",
     "link_list": [
-      {
-        "name": "echo'没啥用的博客",
-        "link": "https://blog.cnm250.cn/",
-        "avatar": "http://cdn.picui.cn/vip/2025/10/31/6904a457852cc.jpg",
-        "descr": "科技改变生活，技术改变世界"
-      },
-      {
-        "name": "夜轻Blog",
-        "link": "https://blog.yeqing.net/",
-        "avatar": "https://list.yppp.net/d/cos/yeqing.jpeg",
-        "descr": "一个人"
-      },
-      {
-        "name": "自由の博客",
-        "link": "https://blog.free2011.top",
-        "avatar": "http://cdn.picui.cn/vip/2025/10/31/6904aa7be84bf.webp",
-        "descr": "自由の博客，一名初中生的博客，热爱生活，热爱技术"
-      },
-      {
-        "name": "AcoFork Blog",
-        "link": "https://blog.2b2x.cn/",
-        "avatar": "http://cdn.picui.cn/vip/2025/10/31/6904ab2933c74.webp",
-        "descr": "Protect What You Love."
-      },
-      {
-        "name": "IFREAD's Site",
-        "link": "https://blogs.lijnf.top/",
-        "avatar": "http://cdn.picui.cn/vip/2025/10/31/6904adad64062.webp",
-        "descr": "I navigate future journey"
-      },
-      {
-        "name": "刺猬心语",
-        "link": "https://axinkai.cn/",
-        "avatar": "http://cdn.picui.cn/vip/2025/10/31/6904aeae9e7f6.webp",
-        "descr": "踔厉奋发，笃行不怠"
-      },
-      {
-        "name": "张洪Heo",
-        "link": "https://blog.zhheo.com/",
-        "avatar": "http://cdn.picui.cn/vip/2025/11/07/690e021046567.webp",
-        "descr": "分享设计与科技生活"
-      },
-      {
-        "name": "❖星港◎Star☆",
-        "link": "https://blog.starsharbor.com/",
-        "avatar": "https://bu.dusays.com/2025/04/11/67f92f6fcfb26.webp",
-        "descr": "以博客记录生活与热爱！"
-      },
-      {
-        "name": "安知鱼",
-        "link": "https://blog.anheyu.com/",
-        "avatar": "https://npm.elemecdn.com/anzhiyu-blog-static@1.0.4/img/avatar.jpg",
-        "descr": "生活明朗，万物可爱"
-      }
     ]
   },
   "en": {
     "class_name": "Friend Links",
     "class_desc": "Every site here is intriguing...",
     "link_list": [
-      {
-        "name": "echo'Blog",
-        "link": "https://blog.cnm250.cn/",
-        "avatar": "http://cdn.picui.cn/vip/2025/10/31/6904a457852cc.jpg",
-        "descr": "Technology changes life, technology changes the world"
-      },
-      {
-        "name": "Yeqing Blog",
-        "link": "https://blog.yeqing.net/",
-        "avatar": "https://list.yppp.net/d/cos/yeqing.jpeg",
-        "descr": "Alone"
-      },
-      {
-        "name": "FreeBoy's Blog",
-        "link": "https://blog.free2011.top",
-        "avatar": "http://cdn.picui.cn/vip/2025/10/31/6904aa7be84bf.webp",
-        "descr": "Free Blog, a junior high school student's blog, love life and technology"
-      },
-      {
-        "name": "AcoFork Blog",
-        "link": "https://blog.2b2x.cn/",
-        "avatar": "http://cdn.picui.cn/vip/2025/10/31/6904ab2933c74.webp",
-        "descr": "Protect What You Love."
-      },
-      {
-        "name": "IFREAD's Site",
-        "link": "https://blogs.lijnf.top/",
-        "avatar": "http://cdn.picui.cn/vip/2025/10/31/6904adad64062.webp",
-        "descr": "I navigate future journey"
-      },
-      {
-        "name": "Axinkai",
-        "link": "https://axinkai.cn/",
-        "avatar": "http://cdn.picui.cn/vip/2025/10/31/6904aeae9e7f6.webp",
-        "descr": "Forge ahead with perseverance and act with dedication"
-      },
-      {
-        "name": "Zhheo",
-        "link": "https://blog.zhheo.com/",
-        "avatar": "http://cdn.picui.cn/vip/2025/11/07/690e021046567.webp",
-        "descr": "Share design and tech life"
-      },
-      {
-        "name": "Starsharbor",
-        "link": "https://blog.starsharbor.com/",
-        "avatar": "https://bu.dusays.com/2025/04/11/67f92f6fcfb26.webp",
-        "descr": "Record life and love with a blog!"
-      },
-      {
-        "name": "Anheyu",
-        "link": "https://blog.anheyu.com/",
-        "avatar": "https://npm.elemecdn.com/anzhiyu-blog-static@1.0.4/img/avatar.jpg",
-        "descr": "Life is bright, everything is lovely"
-      }
     ]
   }
 }
